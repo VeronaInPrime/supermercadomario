@@ -407,10 +407,10 @@ position: relative;
   z-index: 2; }
 
 .price-brush small {
-  font-size: 12px;
+  font-size: 15px;
   position: absolute;
-  right: 16%;
-  bottom: 12px;
+  right: 8%;
+  bottom: 18px;
   opacity: .9;
   z-index: 2; /* ★ acima do clip-path */
   }
@@ -419,7 +419,6 @@ position: relative;
 .price-currency { font-size: 18px; align-self: center; margin-top: 6px; font-weight: 700; color: var(--card-price-color, #ffffff); }
 .price-whole { font-size: clamp(34px, 4.6vw, 46px); line-height: 1; letter-spacing: -2px; color: var(--card-price-color, #ffffff); }
 .price-cents { font-size: 20px; align-self: center; margin-top: -14px; font-weight: 700; color: var(--card-price-color, #ffffff); }
-.price-brush small { font-size: 12px; position: absolute; right: 16%; bottom: 12px; opacity: .9; }
 
 /* ============ FOOTER DO ENCARTE ============ */
 .miro-footer { position: relative; min-height: 180px; padding: 16px 24px 10px; margin-top: 6px; background: linear-gradient(175deg, #00482b 0 48%, #8b0026 49% 100%); display: grid; grid-template-columns: 1.05fr 1.5fr 1.2fr; align-items: center; column-gap: 12px; color: white; }
@@ -838,7 +837,6 @@ position: absolute;
 }
 .miro-card .price-currency,
 .miro-card .price-cents { flex: 0 0 auto; white-space: nowrap; }
-.miro-card .price-brush small { right: 12px; bottom: 8px; }
 .miro-container .miro-card .price-brush { padding: 0 6px 6px !important; }
 
 
@@ -1495,19 +1493,19 @@ function criarTextosPlacaHorizontal(canvasFabric, width, height, nome, preco, un
 
   // "OFERTA" (esquerda/baixo, rotacionado) — teto 100
   const ofertaText = new fabric.Textbox('OFERTA', {
-    left: width * 0.05, top: height * 0.70, width: width * 0.45,
+    left: width * 0.01, top: height * 0.72, width: width * 0.45,
     fontFamily: 'Comic Sans MS',
     fontSize: Math.min(Math.round(height * 0.18), 100),
     fontWeight: 'bold', fontStyle: 'italic',
     fill: '#1a6b8a', textAlign: 'left',
-    angle: -15, charSpacing: -50
+    angle: -30, charSpacing: -50
   });
   canvasFabric.add(ofertaText);
 
   // PREÇO (direita/baixo) — teto 120
-  const larguraPreco = width * 0.60;
+  const larguraPreco = width * 0.8;
   const precoText = new fabric.Textbox(`R$ ${preco}`, {
-    left: width * 0.35,
+    left: width * 0.14,
     top: height * 0.72,
     width: larguraPreco,
     fontFamily: 'Comic Sans MS',
