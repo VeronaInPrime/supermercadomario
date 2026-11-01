@@ -138,8 +138,7 @@ input, select, textarea { font-family: inherit; }
 /* ============ LAYOUT MIRO DO ENCARTE ============ */
 .miro-flyer { background: radial-gradient(ellipse at 50% 12%, rgba(255,255,255,.08), transparent 35%), linear-gradient(115deg, #00482a 0%, #00622e 48%, #003b25 100%); display: flex; flex-direction: column; min-height: 100%; }
 .miro-header { min-height: 300px; display: grid; grid-template-columns: 1.03fr 1fr; gap: 12px; align-items: start; position: relative; z-index: 1; padding: 20px 24px 24px; background-image: linear-gradient(to bottom, rgba(0,85,47,0.95) 0%, rgba(0,85,47,0.65) 40%, rgba(0,85,47,0) 100%), var(--miro-header-bg, url('https://images.unsplash.com/photo-1583258292688-d0213dc5a3a8?q=80&w=1074&auto=format&fit=crop')); background-size: cover; background-position: center; color: white; }
-.brush { position: relative; padding: 17px 20px 20px; filter: drop-shadow(0 4px 2px rgba(0,0,0,.12)); isolation: isolate; }
-.brush::before { content: ""; position: absolute; inset: 0; z-index: -1; border-radius: 13px 7px 17px 8px; transform: rotate(-2deg); clip-path: polygon(3% 7%, 97% 0, 100% 7%, 96% 12%, 100% 20%, 97% 29%, 100% 39%, 96% 46%, 99% 58%, 95% 67%, 100% 75%, 96% 85%, 98% 94%, 82% 100%, 5% 96%, 0 89%, 4% 80%, 0 70%, 4% 59%, 0 49%, 4% 38%, 1% 27%, 5% 18%); }
+.brush { position: relative; padding: 17px 20px 20px; }
 .brand-panel { margin-top: 5px; padding: 22px 20px 18px 26px; }
 .brand-panel::before { background: transparent; }
 .brand-top { font-size: clamp(21px, 3.4vw, 35px); font-weight: 900; font-style: italic; text-align: center; line-height: 1; text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.6); }
@@ -160,8 +159,14 @@ input, select, textarea { font-family: inherit; }
 }
 .orange-stroke { height: 9px; background: #f5a900; border-radius: 50%; transform: rotate(-5deg); margin: 7px 12px 10px 18px; }
 .tagline { font-size: clamp(19px, 3vw, 28px); font-weight: 700; font-style: italic; text-align: center; transform: rotate(-3deg); color: white; text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.55); }
-.offer-panel { margin-top: 12px; padding: 12px 20px 18px; text-align: center; transform: rotate(-1deg); }
-.offer-panel::before { background: var(--miro-vinho); }
+.offer-panel {
+  margin-top: 12px;
+  padding: 12px 20px 18px;
+  text-align: center;
+  background: var(--miro-vinho);                                 /* fundo direto */
+  clip-path: polygon(3% 7%, 97% 0, 100% 7%, 96% 12%, 100% 20%, 97% 29%, 100% 39%, 96% 46%, 99% 58%, 95% 67%, 100% 75%, 96% 85%, 98% 94%, 82% 100%, 5% 96%, 0% 89%, 4% 80%, 0% 70%, 4% 59%, 0% 49%, 4% 38%, 1% 27%, 5% 18%);  /* clip direto */
+  transform: rotate(-2deg);
+}
 .offer-title {
   padding-top: 10px;
   font-size: clamp(47px, 7.8vw, 80px);
@@ -407,10 +412,10 @@ position: relative;
   z-index: 2; }
 
 .price-brush small {
-  font-size: 15px;
+  font-size: 12px;
   position: absolute;
-  right: 8%;
-  bottom: 18px;
+  right: 16%;
+  bottom: 12px;
   opacity: .9;
   z-index: 2; /* ★ acima do clip-path */
   }
@@ -419,6 +424,7 @@ position: relative;
 .price-currency { font-size: 18px; align-self: center; margin-top: 6px; font-weight: 700; color: var(--card-price-color, #ffffff); }
 .price-whole { font-size: clamp(34px, 4.6vw, 46px); line-height: 1; letter-spacing: -2px; color: var(--card-price-color, #ffffff); }
 .price-cents { font-size: 20px; align-self: center; margin-top: -14px; font-weight: 700; color: var(--card-price-color, #ffffff); }
+.price-brush small { font-size: 12px; position: absolute; right: 16%; bottom: 12px; opacity: .9; }
 
 /* ============ FOOTER DO ENCARTE ============ */
 .miro-footer { position: relative; min-height: 180px; padding: 16px 24px 10px; margin-top: 6px; background: linear-gradient(175deg, #00482b 0 48%, #8b0026 49% 100%); display: grid; grid-template-columns: 1.05fr 1.5fr 1.2fr; align-items: center; column-gap: 12px; color: white; }
@@ -439,8 +445,8 @@ position: relative;
 .benefit:nth-child(3) .benefit-icon { background: #f19b00; }
 .always {
 position: absolute;
-  right: 5px;
-  bottom: 55px;
+  right: 35px;
+  bottom: 35px;
   color: #ffd300;
   font-size: 23px;
   line-height: .95;
@@ -588,20 +594,94 @@ position: absolute;
 .preview-small { color: #e6f4ec; font-size: 12px; font-weight: 500; }
 .placas-preview-area { background: var(--miro-cinza); padding: 24px; border-radius: 12px; max-height: 60vh; overflow-y: auto; }
 
-/* ============ PLACAS A4 ============ */
-.placa-a4 { width: 210mm; height: 297mm; background: white; padding: 15mm; box-sizing: border-box; margin: 0 auto 20px auto; box-shadow: var(--sombra-lg); display: flex; flex-direction: column; justify-content: space-between; page-break-after: always; flex-shrink: 0; position: relative; }
-.placa-a4::after { content: ''; width: calc(100% - 30mm); border-top: 2px dashed #ccc; position: absolute; top: 50%; left: 15mm; transform: translateY(-50%); z-index: 1; }
-.placa { width: 100%; height: calc(50% - 7.5mm); background: #ffffff; border: 4px solid #000; border-radius: 12px; padding: 20px; display: flex; flex-direction: column; align-items: center; justify-content: center; box-sizing: border-box; position: relative; overflow: hidden; z-index: 2; aspect-ratio: 1.6; }
-.placa-a4-vertical { width: 210mm; height: 297mm; background: white; padding: 20mm 15mm; box-sizing: border-box; margin: 0 auto 20px auto; box-shadow: var(--sombra-lg); display: flex; flex-direction: column; justify-content: space-between; font-family: 'Comic Sans MS', Courier New, monospace; page-break-after: always; flex-shrink: 0; position: relative; border: 1px solid #e5e7eb; overflow: hidden; }
+/* ============ PLACAS A4 — visual do Supermercado Miro ============ */
+.placa-a4 { width: 210mm; height: 297mm; background: white; padding: 12mm; box-sizing: border-box; margin: 0 auto 20px auto; box-shadow: var(--sombra-lg); display: flex; flex-direction: column; justify-content: space-between; page-break-after: always; flex-shrink: 0; position: relative; }
+.placa-a4::after { content: ''; width: calc(100% - 24mm); border-top: 1px dashed #d1d5db; position: absolute; top: 50%; left: 12mm; transform: translateY(-50%); z-index: 1; }
+.placa { width: 100%; height: calc(45% - 5mm); background: #fff; border: 2.5mm solid var(--miro-verde); border-radius: 4mm; padding: 7mm; display: flex; flex-direction: column; align-items: stretch; justify-content: flex-start; box-sizing: border-box; position: relative; overflow: hidden; z-index: 2; aspect-ratio: 1.6; font-family: 'Inter', Arial, sans-serif; color: var(--miro-verde); }
+.placa-composicao { width: 100%; height: 100%; min-height: 0; display: flex; flex-direction: column; position: relative; z-index: 1; }
+.placa.placa-com-fabric { border: 0 !important; padding: 0 !important; }
+.placa.placa-com-fabric .placa-composicao { display: none !important; }
+.placa-marca { text-align: center; color: var(--miro-verde); font-size: clamp(10px, 1.5vw, 15px); font-weight: 900; letter-spacing: .22em; line-height: 1.2; text-transform: uppercase; }
+.placa-horizontal-conteudo { display: grid; grid-template-columns: 1.12fr .88fr; align-items: stretch; gap: 1%; flex: 1; min-height: 0; padding: 3mm 2mm 0; }
+.placa-horizontal-produto { color: #c81020; font-size: clamp(19px, 3.5vw, 36px); font-weight: 900; line-height: 1.02; text-transform: uppercase; text-align: left; align-self: center; justify-self: start; width: 88%; max-width: 88%; overflow-wrap: anywhere; word-break: normal; min-width: 0; overflow: hidden; }
+.placa-horizontal-detalhe { display: flex; flex-direction: column; align-items: center; justify-content: flex-end; min-width: 0; padding-top: 18mm; padding-bottom: 1mm; }
+.placa-horizontal-etiquetas {
+width: 100%;
+display: flex;
+justify-content: space-between;
+align-items: center;
+padding: 0 4%;
+color: var(--miro-verde);
+font-weight: 900;
+  font-size: clamp(15px, 2vw, 20px);
+  text-transform: uppercase;
+  letter-spacing: 0.3px
+    text-transform: uppercase;
+  }
+  .placa-horizontal-etiquetas span:last-child {
+  font-size: 0.9em;
+  font-weight: 900;               /* ← FORÇA negrito também na unidade */
+  opacity: 0.9;
+    text-transform: uppercase;
+}
+  .placa-horizontal-valor { width: 100%; color: var(--miro-verde); font-size: clamp(38px, 7.2vw, 82px); line-height: .9; font-weight: 900; letter-spacing: -.055em; text-align: center; white-space: nowrap; overflow: hidden; }
+.placa-detalhe-amarelo { width: 28%; min-width: 42px; height: 4px; border-radius: 99px; background: var(--miro-amarelo); margin: 2mm auto; }
+.placa-composicao > .placa-detalhe-amarelo { margin-left: 11%; margin-right: auto; }
+.placa-horizontal-rodape { width: 58%; color: #737b7a; text-align: center; font-size: clamp(8px, 1.1vw, 11px); line-height: 1.3; padding-bottom: 1mm; }
+.placa-horizontal-telefone { color: var(--miro-verde); font-weight: 900; font-size: clamp(9px, 1.25vw, 13px); margin-top: 1mm; }
+.placa-a4-vertical { width: 210mm; height: 297mm; background: white; padding: 13mm 12mm; box-sizing: border-box; margin: 0 auto 20px auto; box-shadow: var(--sombra-lg); display: flex; flex-direction: column; justify-content: stretch; font-family: 'Inter', Arial, sans-serif; page-break-after: always; flex-shrink: 0; position: relative; border: 0; overflow: hidden; color: var(--miro-verde); }
+.placa-a4-vertical::before { content: ''; position: absolute; inset: 8mm; border: 2.5mm solid var(--miro-verde); border-radius: 5mm; pointer-events: none; z-index: 6; }
+.placa-a4-vertical.placa-com-fabric { padding: 0 !important; }
+.placa-a4-vertical.placa-com-fabric::before { display: none !important; }
+.placa-a4-vertical .placa-vertical-composicao { position: relative; z-index: 1; width: 100%; height: 100%; display: flex; flex-direction: column; align-items: stretch; padding: 4mm 3mm; }
 .placa-a4-vertical .placa-vertical-titulo, .placa-a4-vertical .placa-vertical-cifrao, .placa-a4-vertical .placa-vertical-valor, .placa-a4-vertical .placa-vertical-unidade { position: relative; z-index: 2; }
-.placa-a4-vertical .fabric-resultado-placa { z-index: 1; }
+.placa-a4-vertical .fabric-resultado-placa { z-index: 5 !important; }
 .placa-a4-vertical .btn-editar-placa { z-index: 10; }
-.placa-vertical-cifrao { font-size: 55pt; font-weight: 900; color: #00552f; line-height: 1; flex-shrink: 0; margin-bottom: 10px; }
-.placa-vertical-linha-valor { width: 100%; display: flex; justify-content: center; padding: 0 5mm; }
-.placa-vertical-linha-topo { display: flex; justify-content: space-between; align-items: baseline; width: 100%; padding: 0 5mm; margin-bottom: 2mm; }
-.placa-vertical-valor { font-size: 140pt; font-weight: 900; color: #00552f; line-height: 0.9; text-align: center; letter-spacing: -4px; width: 100%; }
-.placa-vertical-unidade { font-size: 55pt; font-weight: 900; color: #00552f; line-height: 1; flex-shrink: 0; margin-bottom: 10px; text-align: right; }
-.placa-vertical-titulo { font-size: 70pt; font-weight: 900; text-align: center; text-transform: uppercase; line-height: 1.1; color: #e60000; word-wrap: break-word; overflow-wrap: break-word; hyphens: auto; width: 100%; flex-grow: 1; display: flex; justify-content: center; padding: 0 5mm; }
+.placa-vertical-cifrao { font-size: clamp(16pt, 4vw, 27pt); font-weight: 900; color: var(--miro-verde); line-height: 1; margin: 0; }
+.placa-vertical-linha-valor { width: 100%; display: flex; justify-content: center; padding: 0 2mm; }
+.placa-vertical-linha-topo { display: flex; justify-content: space-between; align-items: baseline; width: 100%; padding: 0 3mm; margin: 2mm 0 0; }
+.placa-vertical-valor { font-size: clamp(28pt, 16vw, 132pt); font-weight: 900; color: var(--miro-verde); line-height: .9; text-align: center; letter-spacing: -.055em; width: 100%; white-space: nowrap; overflow: hidden; }
+.placa-vertical-unidade {
+  font-size: clamp(16pt, 4vw, 27pt);
+  font-weight: 900;               /* ← já está 900, mantenha */
+  color: var(--miro-verde);
+  line-height: 1;
+  margin: 0;
+  text-align: right;
+  text-transform: uppercase;
+  letter-spacing: 0.2px;
+    text-transform: uppercase;
+}
+.placa-vertical-titulo {
+font-size: clamp(14pt, 5.8vw, 56pt);
+font-weight: 900;
+text-align: center;
+text-transform: uppercase;
+line-height: 1.04;
+color: #c81020;
+overflow-wrap: anywhere;
+
+word-break: normal;
+hyphens: auto;
+flex: 1;
+min-height: 0;
+align-self: center;
+align-items: center;
+justify-content: center;
+overflow: hidden;
+  width: 100% !important;
+  max-width: 100% !important;
+  padding: 0 !important;            /* remove 2mm 1mm */
+  margin: 0 auto;
+  display: block;
+}
+placa-vertical-composicao .placa-vertical-titulo {
+  padding: 0 2mm;
+}
+.placa-vertical-rodape { margin-top: auto; padding-bottom: 1mm; text-align: center; }
+.placa-vertical-validade { color: #737b7a; font-size: 10pt; line-height: 1.3; }
+.placa-vertical-telefone { color: var(--miro-verde); font-size: 12pt; line-height: 1.3; font-weight: 900; margin-top: 1mm; }
+.placa-a4-vertical .fabric-resultado-placa { z-index: 5; }
 .placa-oferta-tag { position: absolute; top: 20px; right: 20px; background: var(--miro-verde); color: var(--miro-amarelo); padding: 6px 14px; border-radius: 6px; font-size: 1.2rem; font-weight: 900; letter-spacing: 1px; transform: rotate(15deg); box-shadow: 0 4px 6px rgba(0,0,0,0.2); z-index: 10; font-family: 'Courier New', Courier, monospace; }
 .placas-table-container { max-height: 50vh; overflow-y: auto; border: 1px solid var(--miro-cinza-borda); border-radius: 12px; margin-bottom: 15px; }
 .placas-table { width: 100%; border-collapse: collapse; background: white; }
@@ -668,16 +748,21 @@ position: absolute;
 
 @media print {
   @page { size: A4 portrait; margin: 0; }
-  body * { visibility: hidden; background: transparent !important; }
+  body * { visibility: hidden; background-color: transparent !important; }
   #placasViewArea, #placasViewArea * { visibility: visible; }
   #modalPlacasView { position: absolute !important; left: 0 !important; top: 0 !important; width: 100% !important; height: auto !important; margin: 0 !important; padding: 0 !important; background: white !important; display: block !important; backdrop-filter: none !important; overflow: visible !important; }
   #modalPlacasView .modal { box-shadow: none !important; border: none !important; max-width: none !important; max-height: none !important; margin: 0 !important; padding: 0 !important; background: transparent !important; overflow: visible !important; animation: none !important; }
   .no-print, .painel-cores-placas, .placas-toolbar-actions, .btn-editar-placa, .modal-header, .modal-footer { display: none !important; }
   #placasViewArea { width: 210mm !important; height: auto !important; padding: 0 !important; margin: 0 !important; background: white !important; display: block !important; }
-  .placa-a4 { width: 210mm !important; height: 297mm !important; margin: 0 !important; padding: 15mm !important; box-sizing: border-box !important; box-shadow: none !important; border: none !important; display: flex !important; flex-direction: column !important; justify-content: space-between !important; page-break-after: always; page-break-inside: avoid; background: white !important; position: relative !important; }
+  .placa-a4 { width: 210mm !important; height: 297mm !important; margin: 0 !important; padding: 12mm !important; box-sizing: border-box !important; box-shadow: none !important; border: none !important; display: flex !important; flex-direction: column !important; justify-content: space-between !important; page-break-after: always; page-break-inside: avoid; background: white !important; position: relative !important; }
   .placa-a4:last-child { page-break-after: auto; }
-  .placa { width: 100% !important; aspect-ratio: 1.6 !important; border: 4px solid #000 !important; display: flex !important; flex-direction: column !important; align-items: center !important; justify-content: center !important; page-break-inside: avoid; background: white !important; overflow: hidden !important; }
-  .placa-a4-vertical { width: 210mm !important; height: 297mm !important; margin: 0 !important; padding: 20mm 15mm !important; box-sizing: border-box !important; box-shadow: none !important; border: none !important; display: flex !important; flex-direction: column !important; justify-content: space-between !important; page-break-after: always; page-break-inside: avoid; background: white !important; position: relative !important; overflow: hidden !important; }
+  .placa { width: 100% !important; aspect-ratio: 1.6 !important; border: 2.5mm solid #00552f !important; border-radius: 4mm !important; display: flex !important; flex-direction: column !important; align-items: stretch !important; justify-content: flex-start !important; page-break-inside: avoid; background: white !important; overflow: hidden !important; }
+  .placa-detalhe-amarelo { background-color: #ffd500 !important; }
+  .placa-horizontal-conteudo { align-items: stretch !important; }
+  .placa-horizontal-produto { text-align: left !important; }
+  .placa-horizontal-detalhe { justify-content: flex-end !important; padding-top: 18mm !important; }
+  .placa-a4-vertical { width: 210mm !important; height: 297mm !important; margin: 0 !important; padding: 13mm 12mm !important; box-sizing: border-box !important; box-shadow: none !important; border: none !important; display: flex !important; flex-direction: column !important; justify-content: stretch !important; page-break-after: always; page-break-inside: avoid; background: white !important; position: relative !important; overflow: hidden !important; }
+  .placa-a4-vertical::before { inset: 8mm !important; border: 2.5mm solid #00552f !important; border-radius: 5mm !important; }
   .placa-a4-vertical:last-child { page-break-after: auto; }
   .placa-a4, .placa-a4 *, .placa, .placa *, .placa-a4-vertical, .placa-a4-vertical * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; color-adjust: exact !important; }
   .fabric-resultado-placa { visibility: visible !important; display: block !important; }
@@ -823,6 +908,24 @@ position: absolute;
   text-align: center;
   font-family: inherit;
 }
+/* Mantém as cores escolhidas também nos seletores mais específicos da SUPER OFERTA. */
+.miro-card.super-discount,
+.miro-container .miro-card.super-discount {
+  background: var(--card-bg, #ffffff) !important;
+}
+.miro-card.super-discount .miro-name,
+.miro-container .miro-card.super-discount .miro-name {
+  color: var(--card-title-color, var(--miro-tinta)) !important;
+}
+.miro-card.super-discount .price-brush,
+.miro-container .miro-card.super-discount .price-brush {
+  background-color: var(--card-price-bg, var(--miro-vinho)) !important;
+  color: var(--card-price-color, #ffffff) !important;
+}
+.miro-card.super-discount .price-brush *,
+.miro-container .miro-card.super-discount .price-brush * {
+  color: var(--card-price-color, #ffffff) !important;
+}
 /* O rótulo da unidade fica no canto; não reserva espaço à direita que empurre o preço. */
 .miro-card .price-brush {
   min-width: 0;
@@ -837,6 +940,22 @@ position: absolute;
 }
 .miro-card .price-currency,
 .miro-card .price-cents { flex: 0 0 auto; white-space: nowrap; }
+/* Unidade no card grande — sempre maiúscula, legível e fora do clip */
+.miro-card .price-brush small {
+  font-size: 15px;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  position: absolute;
+  right: 25px;
+  bottom: 20px;
+  opacity: 0.95;
+  z-index: 2;
+  color: var(--card-price-color, #ffffff);
+  line-height: 1;
+  white-space: nowrap;
+  pointer-events: none;
+}
 .miro-container .miro-card .price-brush { padding: 0 6px 6px !important; }
 
 
@@ -891,9 +1010,7 @@ position: absolute;
 /* ★ ALTERNATIVA: SVG inline como background (funciona sempre no PNG) */
 /* ★ GARANTIR CLIP-PATH NO PNG — fallback + GPU */
 .price-brush,
-.offer-orange,
-.footer-callout,
-.brush::before {
+.offer-orange{
   -webkit-clip-path: polygon(
     5% 10%, 13% 5%, 21% 10%, 29% 2%, 40% 8%, 50% 0, 60% 8%, 72% 4%,
     82% 10%, 96% 5%, 100% 22%, 96% 36%, 100% 51%, 96% 66%, 99% 82%,
@@ -920,15 +1037,44 @@ position: absolute;
   -webkit-clip-path: polygon(4% 8%,100% 0,96% 90%,0 100%);
 }
 
-.footer-callout {
-  -webkit-clip-path: polygon(4% 0,95% 7%,100% 20%,94% 38%,100% 55%,94% 74%,98% 92%,5% 100%,0 83%,4% 66%,0 47%,4% 29%);
-}
 
 /* ★ Remove isolation:isolate que atrapalha o html2canvas */
 .miro-card {
   isolation: auto !important;
 }
+/* Cole isso no seu CSS para forçar o ajuste da caixa */
+.draggable,
+.elemento-texto,
+[contenteditable="true"] {
+    /* 1. Faz a largura e altura se ajustarem exatamente ao texto */
+    width: fit-content !important;
+    height: auto !important;
+    min-width: 0 !important;
+    min-height: 0 !important;
 
+    /* 2. Remove o comportamento de bloco que ocupa a tela toda */
+    display: inline-block !important;
+
+    /* 3. Ajusta o espaço interno (padding). Se estiver muito grande, diminua para 5px ou 0 */
+    padding: 5px !important;
+
+    /* 4. Remove espaço extra entre as linhas do texto */
+    line-height: 1.1 !important;
+
+    /* 5. Garante que o padding não some com a largura total */
+    box-sizing: border-box;
+}
+.placa-horizontal-produto {
+  width: 100% !important;
+  max-width: 100% !important;
+  justify-self: stretch;
+  align-self: center;
+  text-align: left;
+  padding: 0 !important;           /* remove padding interno */
+  overflow-wrap: anywhere;
+  overflow: visible;                /* não corta */
+  display: block;
+}
 </style>
 </head>
 <body>
@@ -1165,7 +1311,7 @@ position: absolute;
 <div class="modal-body">
 <div class="upload-area" onclick="document.getElementById('prodImg').click()">
 <div class="upload-area-icon">🖼️</div><div class="upload-area-text">Adicionar imagem do produto</div><div class="upload-area-hint">PNG, JPG ou WebP • até 20 MB</div>
-<input type="file" id="prodImg" accept="image/*" onchange="previewImage(this, 'previewProd')" style="display: none;" required>
+<input type="file" id="prodImg" accept="image/*" onchange="previewImage(this, 'previewProd')" style="display: none;" >
 </div>
 <img id="previewProd" class="img-preview">
 <div class="form-group"><label>Nome do produto <span class="obrigatorio">*</span></label><input type="text" id="prodNome" placeholder="Ex.: Leite integral 1 litro"></div>
@@ -1174,7 +1320,7 @@ position: absolute;
 <div class="form-group"><label>Preço anterior (R$)</label><input type="text" id="prodPrecoAnt" placeholder="Opcional" oninput="formatarPreco(this)"></div>
 </div>
 <div class="form-row">
-<div class="form-group"><label>Medida <span class="obrigatorio">*</span></label><select id="prodUnid" onchange="atualizarCampoQuantidade()"><option value="UN">Unidade (UN)</option><option value="KG">Quilo (KG)</option><option value="PCT">Pacote (PCT)</option><option value="CX">Caixa (CX)</option><option value="L">Litro (L)</option><option value="ML">Mililitro (ML)</option><option value="G">Grama (G)</option></select></div>
+<div class="form-group"><label>Medida <span class="obrigatorio">*</span></label><select id="prodUnid" onchange="atualizarCampoQuantidade()"><option value="UN">Unidade (UN)</option><option value="KG">Quilo (KG)</option><option value="PCT">Pacote (PCT)</option><option value="CX">Caixa (CX)</option><option value="Litro">Litro (L)</option><option value="ML">Mililitro (ML)</option><option value="Grama(s)">Grama (G)</option></select></div>
 <div class="form-group"><label>Grupo de ofertas</label><select id="prodGrupo"><option value="">Sem grupo</option></select></div>
 </div>
 <div class="form-group" id="prodQtdWrap" style="display:none;">
@@ -1386,7 +1532,7 @@ position: absolute;
           <button class="btn btn-primary" onclick="fabricAdicionarTexto('Novo texto')">＋ Adicionar texto</button>
           <button class="btn btn-secondary" onclick="fabricAdicionarTexto('OFERTA',true)">＋ Adicionar OFERTA</button>
           <div><label for="fabricFonte">Fonte</label><select id="fabricFonte" onchange="fabricAplicarEstilo('fontFamily',this.value)"><option>Courier New</option><option>Verdana</option><option>Arial</option><option>Impact</option><option>Georgia</option><option>Tahoma</option><option>Trebuchet MS</option><option>Comic Sans MS</option><option>Times New Roman</option></select></div>
-          <div><label for="fabricTamanho">Tamanho da fonte</label><input id="fabricTamanho" type="number" min="8" max="180" value="48" onchange="fabricAplicarEstilo('fontSize',Number(this.value))"></div>
+          <div><label for="fabricTamanho">Tamanho da fonte</label><input id="fabricTamanho" type="number" min="8" max="600" step="1" value="48" onchange="fabricAplicarEstilo('fontSize',Number(this.value))"></div>
           <div><label for="fabricCor">Cor do texto</label><input id="fabricCor" type="color" value="#111111" onchange="fabricAplicarEstilo('fill',this.value)"></div>
           <div class="fabric-tool-row">
             <button data-tool="bold"   onclick="fabricToggleBold()"><b>Negrito</b></button>
@@ -1449,118 +1595,290 @@ function rotuloUnidadeItem(item) {
 // ============ HELPERS DE TEXTO ============
 function ajustarTextoParaCaber(textbox, maxWidth, maxHeight, minFontSize = 30, maxFontSize = 400) {
   textbox.set({ width: maxWidth, fontSize: Math.min(textbox.fontSize, maxFontSize) });
+  textbox.initDimensions();
   textbox.setCoords();
-  if (textbox.height > maxHeight) {
-    const proporcao = maxHeight / textbox.height;
-    textbox.set({ fontSize: Math.max(minFontSize, Math.floor(textbox.fontSize * proporcao)) });
+
+  let guard = 0;
+  // Reduz até caber na altura
+  while (textbox.height > maxHeight * 0.95 && textbox.fontSize > minFontSize && guard++ < 200) {
+    textbox.set({ fontSize: Math.max(minFontSize, textbox.fontSize - 2) });
+    textbox.initDimensions();
     textbox.setCoords();
   }
-  let tentativas = 0;
-  while (textbox.height < maxHeight * 0.90 && textbox.fontSize < maxFontSize && tentativas < 80) {
+  // Cresce enquanto couber
+  guard = 0;
+  while (textbox.height < maxHeight * 0.88 && textbox.fontSize < maxFontSize && guard++ < 80) {
     const antes = textbox.fontSize;
-    const antesLinhas = Math.round(textbox.height / textbox.fontSize);
-    const proximo = Math.min(antes + 4, maxFontSize);
-    textbox.set({ fontSize: proximo });
+    const alturaAntes = textbox.height;
+    const prox = Math.min(antes + 4, maxFontSize);
+    textbox.set({ fontSize: prox });
+    textbox.initDimensions();
     textbox.setCoords();
-    const depoisLinhas = Math.round(textbox.height / textbox.fontSize);
-    if (textbox.height > maxHeight || depoisLinhas > antesLinhas) {
+    if (textbox.height > maxHeight * 0.95 || textbox.height <= alturaAntes) {
       textbox.set({ fontSize: antes });
+      textbox.initDimensions();
       textbox.setCoords();
       break;
     }
-    if (proximo === antes) break;
-    tentativas++;
-  }
-  tentativas = 0;
-  while (textbox.height > maxHeight && textbox.fontSize > minFontSize && tentativas < 60) {
-    textbox.set({ fontSize: textbox.fontSize - 2 });
-    textbox.setCoords();
-    tentativas++;
   }
   return textbox;
 }
 
-// ===== HORIZONTAL (layout do velho.html, mantendo tetos) =====
-function criarTextosPlacaHorizontal(canvasFabric, width, height, nome, preco, unidade) {
-  // NOME (topo, alinhado à direita) — teto 170
-  const nomeText = new fabric.Textbox(nome, {
-    left: width * 0.05, top: height * 0.04, width: width * 0.90,
-    fontFamily: 'Comic Sans MS', fontSize: 90, fontWeight: 'bold',
-    fill: '#000000', textAlign: 'right', lineHeight: 1, charSpacing: 0
+// ===== Base visual das placas; os textos continuam editáveis no Fabric =====
+function adicionarMolduraPlaca(canvasFabric, width, height) {
+  canvasFabric.backgroundColor = '#ffffff';
+  canvasFabric.add(new fabric.Rect({
+    left: width * 0.025, top: height * 0.025,
+    width: width * 0.95, height: height * 0.95,
+    fill: 'rgba(255,255,255,0)', stroke: '#00552f',
+    strokeWidth: Math.max(8, width * 0.009), rx: width * 0.025, ry: width * 0.025,
+    selectable: false, evented: false, excludeFromExport: false
+  }));
+}
+function adicionarTextoVisualPlaca(canvasFabric, texto, opcoes, larguraMax, alturaMax, minFont, maxFont) {
+  const caixa = new fabric.Textbox(texto, {
+    fontFamily: 'Arial', fontWeight: '900', fontSize: maxFont,
+    fill: '#00552f', lineHeight: 1.02, splitByGrapheme: false,
+    ...opcoes
   });
-  ajustarTextoParaCaber(nomeText, width * 0.90, height * 0.42, 40, 170);
-  canvasFabric.add(nomeText);
+  if (larguraMax && alturaMax) ajustarTextoParaCaber(caixa, larguraMax, alturaMax, minFont, maxFont);
+  caixa.set({ selectable: true, evented: true });
+  canvasFabric.add(caixa);
+  return caixa;
+}
+function ajustarLarguraTextoPlaca(texto, larguraMax, tamanhoMinimo = 12, alturaMaxima = null) {
+  if (!texto || typeof texto.getLineWidth !== 'function') return texto;
 
-  // "OFERTA" (esquerda/baixo, rotacionado) — teto 100
-  const ofertaText = new fabric.Textbox('OFERTA', {
-    left: width * 0.01, top: height * 0.72, width: width * 0.45,
-    fontFamily: 'Comic Sans MS',
-    fontSize: Math.min(Math.round(height * 0.18), 100),
-    fontWeight: 'bold', fontStyle: 'italic',
-    fill: '#1a6b8a', textAlign: 'left',
-    angle: -30, charSpacing: -50
-  });
-  canvasFabric.add(ofertaText);
+  const larguraDisponivel = Math.max(1, Number(larguraMax) || Number(texto.width) || 1);
+  const alturaLimite = Number(alturaMaxima || texto.miroFitMaxHeight) || Infinity;
+  const margem = 0.92; // 8% de folga para a borda
 
-  // PREÇO (direita/baixo) — teto 120
-  const larguraPreco = width * 0.8;
-  const precoText = new fabric.Textbox(`R$ ${preco}`, {
-    left: width * 0.14,
-    top: height * 0.72,
-    width: larguraPreco,
-    fontFamily: 'Comic Sans MS',
-    fontSize: Math.min(Math.round(height * 0.26), 120),
-    fontWeight: 'bold',
-    fill: '#e60000', textAlign: 'right', charSpacing: -50
-  });
-  canvasFabric.add(precoText);
-  if (precoText.width > larguraPreco) {
-    const fator = larguraPreco / precoText.width;
-    precoText.set({ fontSize: Math.max(60, Math.round(precoText.fontSize * fator)) });
-    precoText.setCoords();
+  // 1. Reseta a largura e o charSpacing para medir direito
+  texto.set({ width: larguraDisponivel, charSpacing: 0, scaleX: 1, scaleY: 1 });
+  texto.initDimensions();
+
+  // 2. Pega a largura/altura real do texto renderizado
+  const rect = texto.getBoundingRect(true, true);
+  const larguraReal = rect.width;
+  const alturaReal = rect.height;
+
+  // 3. Se estourou (seja por largura ou altura), calcula a escala exata para caber
+  if (larguraReal > larguraDisponivel * margem || alturaReal > alturaLimite * margem) {
+    const escalaW = (larguraDisponivel * margem) / larguraReal;
+    const escalaH = (alturaLimite * margem) / alturaReal;
+    const escala = Math.min(escalaW, escalaH);
+
+    // 4. Aplica a redução direto na fonte
+    const novoTamanho = Math.max(8, Math.floor(texto.fontSize * escala)); // Mínimo absoluto de 8px
+    texto.set({ fontSize: novoTamanho });
+
+    // 5. Recalcula as dimensões internas e força o texto a não ser maior que o espaço
+    texto.initDimensions();
   }
+
+  // 6. Trava a largura final para não estourar (impede o overflow visual)
+  texto.set({ width: larguraDisponivel });
+
+  texto.setCoords();
+  return texto;
+}
+function ajustarObjetosAutomaticosDaPlaca(canvas, width, height, tipo) {
+  if (!canvas) return;
+  const vertical = tipo === 'vertical';
+
+  canvas.getObjects().forEach(obj => {
+    if (obj.miroRole !== 'product-title' && obj.miroRole !== 'price') return;
+
+    if (obj.miroRole === 'product-title') {
+      if (vertical) {
+        const tituloWidth  = width  * 0.84;
+        const tituloHeight = height * 0.36;
+        obj.set({
+          originX: 'center', originY: 'top',
+          left: width * 0.50, top: height * 0.12,
+          width: tituloWidth, height: tituloHeight,
+          scaleX: 1, scaleY: 1,
+          textAlign: 'center',
+          miroFitMaxHeight: tituloHeight, miroFitMinFontSize: 10
+        });
+      } else {
+        const tituloWidth  = width  * 0.80;
+        const tituloHeight = height * 0.46;
+        obj.set({
+          originX: 'left', originY: 'top',
+          left: width * 0.05, top: height * 0.18,
+          width: tituloWidth, height: tituloHeight,
+          scaleX: 1, scaleY: 1,
+          textAlign: 'left',
+          miroFitMaxHeight: tituloHeight, miroFitMinFontSize: 10
+        });
+      }
+    } else if (obj.miroRole === 'price') {
+      const precoWidth   = width  * (vertical ? 0.84 : 0.44);
+      const precoHeight  = height * (vertical ? 0.24 : 0.22);
+
+      obj.set({
+        originX: 'center', originY: 'top',
+        left: width * (vertical ? 0.50 : 0.52 + 0.44 / 2),
+        top: (vertical ? height * 0.64 : height * 0.74),
+        width: precoWidth, height: precoHeight,
+        scaleX: 1, scaleY: 1,
+        miroFitMaxHeight: precoHeight,
+        // ★ Mínimo caiu para 8 no vertical
+        miroFitMinFontSize: 8
+      });
+    }
+
+    obj.setCoords();
+  });
+  canvas.requestRenderAll();
+}
+function fabricJsonTemMoldura(json, largura = 1000, altura = 1000) {
+  try {
+    const dados = typeof json === 'string' ? JSON.parse(json) : json;
+    return (dados?.objects || []).some(obj => {
+      const cor = String(obj.stroke || '').replace(/\s/g, '').toLowerCase();
+      const w = Number(obj.width || 0) * Number(obj.scaleX || 1);
+      const h = Number(obj.height || 0) * Number(obj.scaleY || 1);
+      return String(obj.type).toLowerCase() === 'rect' && cor === '#00552f' &&
+        Number(obj.rx || 0) > 0 && w >= largura * .85 && h >= altura * .85;
+    });
+  } catch (e) { return false; }
+}
+function mostrarImagemFabricDaPlaca(placa, img, dataUrl, temMoldura) {
+  placa.classList.toggle('placa-com-fabric', !!temMoldura);
+  const mostrar = () => {
+    img.style.display = 'block';
+    img.style.opacity = '1';
+  };
+  img.onload = mostrar;
+  img.src = dataUrl;
+  if (img.complete && img.naturalWidth) mostrar();
+}
+function adicionarLinhaAmarelaPlaca(canvasFabric, left, top, width, height) {
+  canvasFabric.add(new fabric.Rect({
+    left, top, width, height, fill: '#ffd500', rx: height / 2, ry: height / 2,
+    selectable: false, evented: false
+  }));
 }
 
+function criarTextosPlacaHorizontal(canvasFabric, width, height, nome, preco, unidade) {
+  adicionarMolduraPlaca(canvasFabric, width, height);
 
-// ===== VERTICAL (fontes adaptativas, sem espaço em branco) =====
+  // Marca
+  adicionarTextoVisualPlaca(canvasFabric, 'SUPERMERCADO MIRO', {
+    left: width * .08, top: height * .10, width: width * .84,
+    fontSize: 32, fill: '#00552f', textAlign: 'center', charSpacing: 180
+  }, width * .84, height * .10, 18, 32);
+
+  // Nome (coluna esquerda expandida)
+  const nomeTexto = adicionarTextoVisualPlaca(canvasFabric, nome, {
+    left: width * .05, top: height * .18, width: width * .80, height: height * .46,
+    fontSize: 100, fill: '#c81020', textAlign: 'left', lineHeight: .95,
+    originX: 'left', originY: 'top'
+  }, width * .80, height * .46, 10, 150);
+  nomeTexto.set({
+    miroRole: 'product-title',
+    miroBaseFontSize: 100,
+    miroFitMinFontSize: 10,
+    miroFitMaxHeight: height * .46,
+    originX: 'left', originY: 'top'
+  });
+  ajustarLarguraTextoPlaca(nomeTexto, width * .80, 10, height * .46);
+
+  // Linha amarela
+  adicionarLinhaAmarelaPlaca(canvasFabric, width * .17, height * .70, width * .24, height * .014);
+
+  // Rodapé esquerdo (Validade e Telefone)
+  adicionarTextoVisualPlaca(canvasFabric, 'Oferta válida enquanto durarem os estoques', {
+    left: width * .05, top: height * .76, width: width * .45, height: height * .06,
+    fontSize: 20, fill: '#737b7a', textAlign: 'center', fontWeight: '400'
+  }, width * .45, height * .06, 12, 20);
+
+  adicionarTextoVisualPlaca(canvasFabric, '(47) 3521-3354', {
+    left: width * .05, top: height * .82, width: width * .45, height: height * .08,
+    fontSize: 28, fill: '#00552f', textAlign: 'center'
+  }, width * .45, height * .08, 14, 28);
+
+  // ★ COLUNA DIREITA: R$ | unidade na linha de cima
+  adicionarTextoVisualPlaca(canvasFabric, 'R$', {
+    left: width * .54, top: height * .68, width: width * .14, height: height * .05,
+    fontSize: 28, fill: '#00552f', textAlign: 'left'
+  }, width * .14, height * .05, 14, 28);
+
+adicionarTextoVisualPlaca(canvasFabric, String(unidade || '').toUpperCase(), {
+  left: width * .82, top: height * .68, width: width * .14, height: height * .05,
+  fontSize: 26, fill: '#00552f', textAlign: 'right'
+}, width * .14, height * .05, 12, 26);
+
+  // ★ VALOR: Abaixo do R$, alinhado com o telefone (top: 0.74)
+  const valor = adicionarTextoVisualPlaca(canvasFabric, preco, {
+    left: width * .52, top: height * .74, width: width * .44, height: height * .22,
+    fontSize: 140, fill: '#00552f', textAlign: 'center', charSpacing: -40, lineHeight: .88
+  }, width * .44, height * .22, 24, 140);
+  valor.set({ miroRole: 'price', miroBaseFontSize: 140, miroFitMinFontSize: 24, miroFitMaxHeight: height * .22 });
+  ajustarLarguraTextoPlaca(valor, width * .44, 24, height * .22);
+}
+
 function criarTextosPlacaVertical(canvasFabric, width, height, nome, preco, unidade) {
-  // NOME — começa em 180, desce até caber em 40% da altura
-  const nomeText = new fabric.Textbox(nome, {
-    left: width * 0.05, top: height * 0.05, width: width * 0.90,
-    fontFamily: 'Comic Sans MS', fontSize: 180, fontWeight: 'bold',
-    fill: '#e60000', textAlign: 'center', lineHeight: 1.05, charSpacing: -30
-  });
-  ajustarTextoParaCaber(nomeText, width * 0.90, height * 0.40, 60, 180);
-  canvasFabric.add(nomeText);
+  adicionarMolduraPlaca(canvasFabric, width, height);
 
-  // R$
-  const cifrao = new fabric.Textbox('R$', {
-    left: width * 0.06, top: height * 0.62, width: width * 0.25,
-    fontFamily: 'Comic Sans MS', fontSize: 110, fontWeight: 'bold',
-    fill: '#00552f', textAlign: 'left'
-  });
-  ajustarTextoParaCaber(cifrao, width * 0.25, height * 0.07, 60, 130);
-  canvasFabric.add(cifrao);
+  // Marca
+  adicionarTextoVisualPlaca(canvasFabric, 'SUPERMERCADO MIRO', {
+    left: width * .10, top: height * .06, width: width * .80,
+    fontSize: 36, fill: '#00552f', textAlign: 'center', charSpacing: 200
+  }, width * .80, height * .06, 20, 36);
 
-  // UNIDADE
-  const unidadeText = new fabric.Textbox(unidade, {
-    left: width * 0.70, top: height * 0.62, width: width * 0.24,
-    fontFamily: 'Comic Sans MS', fontSize: 90, fontWeight: 'bold',
-    fill: '#00552f', textAlign: 'right'
+  // Nome
+  const nomeTexto = adicionarTextoVisualPlaca(canvasFabric, nome, {
+    left: width * .50, top: height * .12, width: width * .84, height: height * .36,
+    fontSize: 100, fill: '#c81020', textAlign: 'center', lineHeight: 1.02,
+    originX: 'center', originY: 'top'
+  }, width * .84, height * .36, 10, 150);
+  nomeTexto.set({
+    miroRole: 'product-title',
+    miroBaseFontSize: 100,
+    miroFitMinFontSize: 10,
+    miroFitMaxHeight: height * .36,
+    originX: 'center',
+    originY: 'top'
   });
-  ajustarTextoParaCaber(unidadeText, width * 0.24, height * 0.06, 40, 130);
-  canvasFabric.add(unidadeText);
+  ajustarLarguraTextoPlaca(nomeTexto, width * .84, 10, height * .36);
 
-  // PREÇO — começa em 200, desce até caber em 30%
-  const precoText = new fabric.Textbox(preco, {
-    left: width * 0.03, top: height * 0.70, width: width * 0.94,
-    fontFamily: 'Comic Sans MS', fontSize: 200, fontWeight: 'bold',
-    fill: '#00552f', textAlign: 'center', charSpacing: -40, lineHeight: 0.9
-  });
-  ajustarTextoParaCaber(precoText, width * 0.94, height * 0.28, 100, 220);
-  canvasFabric.add(precoText);
+  // Linha amarela (desceu um pouco junto com o preço)
+  adicionarLinhaAmarelaPlaca(canvasFabric, width * .37, height * .535, width * .26, height * .008);
+
+  // ★ R$ e unidade: desceram para 58% (era 50.5%)
+  adicionarTextoVisualPlaca(canvasFabric, 'R$', {
+    left: width * .06, top: height * .58, width: width * .18, height: height * .05,
+    fontSize: 62, fill: '#00552f', textAlign: 'left'
+  }, width * .18, height * .05, 36, 62);
+
+adicionarTextoVisualPlaca(canvasFabric, String(unidade || '').toUpperCase(), {
+  left: width * .76, top: height * .58, width: width * .18, height: height * .05,
+  fontSize: 62, fill: '#00552f', textAlign: 'right'
+}, width * .18, height * .05, 32, 62);
+
+  // ★ Valor: desceu para 64%, altura ajustada, charSpacing suavizado e mínimo 8px
+  // ★ Valor: Ajustado para não estourar com números grandes
+  const valor = adicionarTextoVisualPlaca(canvasFabric, preco, {
+    left: width * .08, top: height * .64, width: width * .84, height: height * .24,
+    fontSize: 240, fill: '#00552f', textAlign: 'center', lineHeight: .86
+  }, width * .84, height * .24, 8, 240);
+  valor.set({ miroRole: 'price', miroBaseFontSize: 240, miroFitMinFontSize: 8, miroFitMaxHeight: height * .24 });
+  ajustarLarguraTextoPlaca(valor, width * .84, 8, height * .24);
+
+  // Rodapé
+  adicionarTextoVisualPlaca(canvasFabric, 'Oferta válida enquanto durarem os estoques', {
+    left: width * .08, top: height * .88, width: width * .84, height: height * .04,
+    fontSize: 22, fill: '#737b7a', textAlign: 'center', fontWeight: '400'
+  }, width * .84, height * .04, 14, 22);
+
+  adicionarTextoVisualPlaca(canvasFabric, '(47) 3521-3354', {
+    left: width * .08, top: height * .93, width: width * .84, height: height * .05,
+    fontSize: 30, fill: '#00552f', textAlign: 'center'
+  }, width * .84, height * .05, 16, 30);
 }
-
 window.onload = function() {
   atualizarCampoDescricao('prod');
   atualizarCampoQuantidade();
@@ -1619,14 +1937,11 @@ function renderizarCalendario() {
   }
 }
 function normalizarDataPromocoes(dataStr) {
-  const data = new Date(dataStr + 'T12:00:00');
-  if (data.getDay() === 0) data.setDate(data.getDate() - 1);
-  return formatarISO(data);
+  return dataStr; // não força mais domingo → sábado
 }
 function selecionarData(dataStr) {
-  const dataUnificada = normalizarDataPromocoes(dataStr);
-  localStorage.setItem('miro_last_date', dataUnificada);
-  calendarioData = new Date(dataUnificada + 'T12:00:00');
+  localStorage.setItem('miro_last_date', dataStr);   // ← sem normalizar
+  calendarioData = new Date(dataStr + 'T12:00:00');
   renderizarCalendario();
 }
 function mudarMes(delta) { calendarioData.setMonth(calendarioData.getMonth() + delta); renderizarCalendario(); }
@@ -1687,8 +2002,7 @@ function atualizarCardCampanhaModal() {
 }
 function calConfirmar() {
   if (!calRangeInicio) { alert('Selecione uma data'); return; }
-  let escolhida = formatarISO(calRangeInicio);
-  escolhida = normalizarDataPromocoes(escolhida);
+  const escolhida = formatarISO(calRangeInicio);      // ← sem normalizar
   dataAtual = escolhida;
   dataPeriodoInicio = escolhida;
   dataPeriodoFim = escolhida;
@@ -1782,7 +2096,7 @@ function restaurarTextosPadrao() {
 // ============ NAVEGAÇÃO ============
 function entrarNoProjeto() {
   let dataSelecionada = localStorage.getItem('miro_last_date');
-  if (dataSelecionada) { dataSelecionada = normalizarDataPromocoes(dataSelecionada); localStorage.setItem('miro_last_date', dataSelecionada); }
+  // ← remova a linha: dataSelecionada = normalizarDataPromocoes(dataSelecionada);
   if (!dataSelecionada) { alert('Por favor, selecione uma data no calendário!'); return; }
   dataAtual = dataSelecionada;
   const periodoSalvo = localStorage.getItem('miro_periodo_' + dataAtual);
@@ -2075,7 +2389,6 @@ async function salvarProduto() {
   if (dataFim < dataInicio) { alert('A data final não pode ser anterior à data inicial.'); return; }
 
   const itemExistente = modoEdicao.ativo && modoEdicao.id ? encontrarItemPorId(modoEdicao.id) : null;
-  if (!imgFile && !itemExistente) { alert('IMAGEM É OBRIGATÓRIA!'); return; }
 
   const id = itemExistente ? itemExistente.item.id : (ehSuper ? 'super_' : 'prod_') + Date.now();
   const preview = document.getElementById('previewProd');
@@ -2562,6 +2875,68 @@ function excluirContainer(id) {
 
 // ============ PREVIEW PNG — sem distorção ============
 let canvasGerado = null;
+function miroSvgPoligonoParaPNG(pontos, cor, rotacao = 0) {
+  const pontosSvg = pontos.replace(/%/g, '').replace(/\s+/g, ' ').trim();
+  const corFinal = (cor && cor !== 'transparent' && cor !== 'rgba(0, 0, 0, 0)')
+    ? cor : '#00552f';
+
+  const poly = `<polygon points="${pontosSvg}" fill="${corFinal}"/>`;
+  const conteudo = rotacao
+    ? `<g transform="rotate(${rotacao} 50 50)">${poly}</g>`
+    : poly;
+
+  const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="1000" viewBox="0 0 100 100" preserveAspectRatio="none">${conteudo}</svg>`;
+  return `data:image/svg+xml,${encodeURIComponent(svg)}`;
+}
+function miroPrepararClipPathsParaPNG(doc) {
+  const estiloCalculado = doc.defaultView
+    ? doc.defaultView.getComputedStyle.bind(doc.defaultView)
+    : getComputedStyle;
+
+  // 1) Remove filter SOMENTE dos ancestrais do .offer-panel (o drop-shadow do .brush).
+  //    NÃO toque no .footer-callout — ele funciona sozinho com clip-path + background sólido.
+  doc.querySelectorAll('#flyer-preview .brush, #flyer-preview .miro-header').forEach(el => {
+    el.style.filter = 'none';
+    el.style.webkitFilter = 'none';
+  });
+
+  // 2) Troca clip-path por background-image SVG APENAS nos 3 elementos que precisam.
+  //    O .footer-callout NÃO entra aqui — ele é rasterizado direto pelo html2canvas.
+const poligonos = {
+  '.price-brush':    '5 10,13 5,21 10,29 2,40 8,50 0,60 8,72 4,82 10,96 5,100 22,96 36,100 51,96 66,99 82,88 94,75 89,62 100,48 92,35 100,23 92,9 96,0 81,4 65,0 49,4 32,0 20',
+  '.offer-orange':   '4 8,100 0,96 90,0 100',
+  '.offer-panel':    '3 7,97 0,100 7,96 12,100 20,97 29,100 39,96 46,99 58,95 67,100 75,96 85,98 94,82 100,5 96,0 89,4 80,0 70,4 59,0 49,4 38,1 27,5 18',
+  '.footer-callout': '4 0,95 7,100 20,94 38,100 55,94 74,98 92,5 100,0 83,4 66,0 47,4 29'
+};
+
+Object.entries(poligonos).forEach(([selector, points]) => {
+  // ★ Define a rotação por seletor (para ir dentro do SVG)
+  let rotacao = 0;
+  if (selector === '.offer-panel')    rotacao = -2;
+  if (selector === '.offer-orange')   rotacao = -2;
+  if (selector === '.footer-callout') rotacao = -5;
+
+  doc.querySelectorAll(`#flyer-preview ${selector}`).forEach(el => {
+    let cor = estiloCalculado(el).backgroundColor;
+    if (!cor || cor === 'rgba(0, 0, 0, 0)' || cor === 'transparent') {
+      if (selector === '.offer-panel')       cor = '#8f0027';
+      else if (selector === '.price-brush')  cor = '#8f0027';
+      else if (selector === '.offer-orange') cor = '#f04b0b';
+      else if (selector === '.footer-callout') cor = '#8b0026';   // ← cor própria do footer
+      else                                   cor = '#00552f';
+    }
+
+    el.style.backgroundImage = `url("${miroSvgPoligonoParaPNG(points, cor, rotacao)}")`;
+    el.style.backgroundColor = 'transparent';
+    el.style.backgroundSize = '100% 100%';
+    el.style.backgroundRepeat = 'no-repeat';
+    el.style.backgroundPosition = 'center';
+    el.style.clipPath = 'none';
+    el.style.webkitClipPath = 'none';
+    el.style.transform = 'none';
+  });
+});
+}
 function abrirPreviewPNG() {
   const el = document.getElementById('flyer-preview');
   const wrap = document.getElementById('flyerScale');
@@ -2586,7 +2961,8 @@ function abrirPreviewPNG() {
       logging: false,
       width: 1080,
       height: alturaReal,
-      windowWidth: 1080
+      windowWidth: 1080,
+      onclone: (doc) => miroPrepararClipPathsParaPNG(doc)
     }).then(canvas => {
       canvasGerado = canvas;
       canvas.toBlob((blob) => { if (pngBlobUrl) URL.revokeObjectURL(pngBlobUrl); pngBlobUrl = URL.createObjectURL(blob); }, 'image/png');
@@ -2682,8 +3058,10 @@ function renderizarPlacasVerticaisA4(itens) {
 
     pagina.innerHTML = `
       <button class="btn-editar-placa" onclick="toggleEdicaoPlaca(this)">✏️ Editar</button>
-      <div class="placa-vertical-titulo editavel">${escapeHtml(nomeProduto)}</div>
-      <div class="placa-vertical-rodape">
+      <div class="placa-vertical-composicao">
+        <div class="placa-marca">SUPERMERCADO MIRO</div>
+        <div class="placa-vertical-titulo editavel">${escapeHtml(nomeProduto)}</div>
+        <div class="placa-detalhe-amarelo"></div>
         <div class="placa-vertical-linha-topo">
           <span class="placa-vertical-cifrao editavel">R$</span>
           <span class="placa-vertical-unidade editavel">${escapeHtml(rotuloUnidadeItem(item))}</span>
@@ -2691,27 +3069,45 @@ function renderizarPlacasVerticaisA4(itens) {
         <div class="placa-vertical-linha-valor">
           <span class="placa-vertical-valor editavel">${preco}</span>
         </div>
+        <div class="placa-vertical-rodape">
+          <div class="placa-vertical-validade">Oferta válida enquanto durarem os estoques</div>
+          <div class="placa-vertical-telefone">(47) 3521-3354</div>
+        </div>
       </div>
-      <img class="fabric-resultado-placa" src="" style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:fill;z-index:1;opacity:0;transition:opacity 0.3s;pointer-events:none;">
+      <img class="fabric-resultado-placa" src="" alt="" style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:fill;z-index:5;opacity:0;display:none;transition:opacity 0.3s;pointer-events:none;">
     `;
 
+    const larguraCanvas = 1000;
+    const alturaCanvas = Math.round(larguraCanvas / (210 / 297));
+    const tempCanvasEl = document.createElement('canvas');
+    tempCanvasEl.width = larguraCanvas;
+    tempCanvasEl.height = alturaCanvas;
+    const tempFabric = new fabric.StaticCanvas(tempCanvasEl, { backgroundColor: '#ffffff' });
+    const img = pagina.querySelector('.fabric-resultado-placa');
+    const desenharPadrao = () => {
+      criarTextosPlacaVertical(tempFabric, larguraCanvas, alturaCanvas, nomeProduto, preco, rotuloUnidadeItem(item));
+      tempFabric.renderAll();
+      setTimeout(() => {
+        if (img) mostrarImagemFabricDaPlaca(pagina, img, tempFabric.toDataURL({ format: 'png', multiplier: 3 }), true);
+        tempFabric.dispose();
+      }, 30);
+    };
     if (savedJson) {
       try {
         const parsed = JSON.parse(savedJson);
-        const tempCanvasEl = document.createElement('canvas');
-        tempCanvasEl.width = 1000; tempCanvasEl.height = Math.round(1000 / 0.707);
-        const tempFabric = new fabric.StaticCanvas(tempCanvasEl, { backgroundColor: '#ffffff' });
+        const temMoldura = fabricJsonTemMoldura(parsed, larguraCanvas, alturaCanvas);
         tempFabric.loadFromJSON(parsed, () => {
-          const dataUrl = tempFabric.toDataURL({ format: 'png', multiplier: 2 });
-          const img = pagina.querySelector('.fabric-resultado-placa');
-          if (img) { img.src = dataUrl; img.onload = () => { img.style.opacity = '1'; }; }
+          ajustarObjetosAutomaticosDaPlaca(tempFabric, larguraCanvas, alturaCanvas, 'vertical');
+          if (img) mostrarImagemFabricDaPlaca(pagina, img, tempFabric.toDataURL({ format: 'png', multiplier: 3 }), temMoldura);
           pagina.querySelectorAll('.editavel').forEach(el => el.style.visibility = 'hidden');
           tempFabric.dispose();
         });
-      } catch (e) { console.warn('Erro ao restaurar placa vertical salva:', e); }
+      } catch (e) {
+        console.warn('Erro ao restaurar placa vertical salva:', e);
+        desenharPadrao();
+      }
     } else {
-      const img = pagina.querySelector('.fabric-resultado-placa');
-      if (img) img.style.display = 'none';
+      desenharPadrao();
     }
     area.appendChild(pagina);
   }
@@ -2748,26 +3144,51 @@ function renderizarPlacasA4(itens) {
 
         placa.innerHTML = `
           <button class="btn-editar-placa" onclick="toggleEdicaoPlaca(this)">✏️ Editar</button>
-          <img class="fabric-resultado-placa" src="" style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:fill;z-index:1;opacity:0;transition:opacity 0.3s;">
+          <div class="placa-composicao">
+            <div class="placa-marca">SUPERMERCADO MIRO</div>
+            <div class="placa-horizontal-conteudo">
+              <div class="placa-horizontal-produto editavel">${escapeHtml(nomeProduto)}</div>
+              <div class="placa-horizontal-detalhe">
+                <div class="placa-horizontal-etiquetas"><span>R$</span><span>${escapeHtml(rotuloUnidadeItem(item))}</span></div>
+                <div class="placa-horizontal-valor editavel">${preco}</div>
+              </div>
+            </div>
+            <div class="placa-detalhe-amarelo"></div>
+            <div class="placa-horizontal-rodape">
+              Oferta válida enquanto durarem os estoques
+              <div class="placa-horizontal-telefone">(47) 3521-3354</div>
+            </div>
+          </div>
+          <img class="fabric-resultado-placa" src="" alt="" style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:fill;z-index:5;opacity:0;display:none;transition:opacity 0.3s;pointer-events:none;">
         `;
         pagina.appendChild(placa);
 
         if (savedJson) {
           try {
-            tempFabric.loadFromJSON(JSON.parse(savedJson), function() {
+            const parsed = JSON.parse(savedJson);
+            const temMoldura = fabricJsonTemMoldura(parsed, width, height);
+            tempFabric.loadFromJSON(parsed, function() {
+              ajustarObjetosAutomaticosDaPlaca(tempFabric, width, height, 'horizontal');
               const dataUrl = tempFabric.toDataURL({ format: 'png', multiplier: 2 });
               const img = placa.querySelector('img');
-              if (img) { img.src = dataUrl; img.onload = () => { img.style.opacity = '1'; }; }
+              if (img) mostrarImagemFabricDaPlaca(placa, img, dataUrl, temMoldura);
               tempFabric.dispose();
             });
-          } catch (e) { console.warn('Erro ao carregar placa salva:', e); }
+          } catch (e) {
+            console.warn('Erro ao carregar placa salva:', e);
+            criarTextosPlacaHorizontal(tempFabric, width, height, nomeProduto, preco, rotuloUnidadeItem(item));
+            tempFabric.renderAll();
+            const img = placa.querySelector('img');
+            if (img) mostrarImagemFabricDaPlaca(placa, img, tempFabric.toDataURL({ format: 'png', multiplier: 3 }), true);
+            tempFabric.dispose();
+          }
         } else {
           criarTextosPlacaHorizontal(tempFabric, width, height, nomeProduto, preco, rotuloUnidadeItem(item));
           tempFabric.renderAll();
           setTimeout(() => {
             const dataUrl = tempFabric.toDataURL({ format: 'png', multiplier: 2 });
             const img = placa.querySelector('img');
-            if (img) { img.src = dataUrl; img.onload = () => { img.style.opacity = '1'; }; }
+            if (img) mostrarImagemFabricDaPlaca(placa, img, dataUrl, true);
             tempFabric.dispose();
           }, 50);
         }
@@ -2810,7 +3231,14 @@ function abrirEditorFabric(placa) {
 
   fabricEditor.on('selection:created', fabricSincronizarControles);
   fabricEditor.on('selection:updated', fabricSincronizarControles);
-  fabricEditor.on('text:changed', fabricSincronizarControles);
+  fabricEditor.on('text:changed', function(evento) {
+    const objeto = evento?.target;
+    if (objeto?.miroRole === 'price' || objeto?.miroRole === 'product-title') {
+      ajustarLarguraTextoPlaca(objeto, objeto.width, objeto.miroFitMinFontSize || 34, objeto.miroFitMaxHeight);
+      fabricEditor.requestRenderAll();
+    }
+    fabricSincronizarControles();
+  });
   fabricEditor.on('mouse:down', () => setTimeout(fabricSincronizarControles, 0));
   fabricEditor.on('mouse:up',   () => setTimeout(fabricSincronizarControles, 0));
   fabricEditor.on('mouse:dblclick', function(opt){
@@ -2830,6 +3258,7 @@ function abrirEditorFabric(placa) {
   if (savedJson) {
     try {
       fabricEditor.loadFromJSON(JSON.parse(savedJson), function() {
+        ajustarObjetosAutomaticosDaPlaca(fabricEditor, width, height, fabricEditorTipo);
         document.getElementById('modalEditorFabric').classList.add('active');
         setTimeout(ajustarCanvasNoModal, 50);
         fabricEditor.requestRenderAll();
@@ -2857,25 +3286,75 @@ function fabricObjetoSelecionado(){ return fabricEditor ? fabricEditor.getActive
 function fabricSincronizarControles() {
   const o = fabricObjetoSelecionado();
   if (!o) return;
+
   if (o.fontFamily) {
     const sel = document.getElementById('fabricFonte');
-    const alvo = o.fontFamily.toString().split(',')[0].trim().toLowerCase();
-    const match = [...sel.options].find(opt => opt.value.trim().toLowerCase() === alvo);
-    if (match) sel.value = match.value;
+    if (sel) {
+      const alvo = o.fontFamily.toString().split(',')[0].trim().toLowerCase();
+      let match = [...sel.options].find(opt => opt.value.trim().toLowerCase() === alvo);
+      if (!match) {
+        match = document.createElement('option');
+        match.value = o.fontFamily;
+        match.textContent = o.fontFamily;
+        sel.appendChild(match);
+      }
+      sel.value = match.value;
+    }
   }
-  if (typeof o.fontSize === 'number') document.getElementById('fabricTamanho').value = Math.round(o.fontSize);
-  if (typeof o.fill === 'string' && /^#[0-9a-f]{6}$/i.test(o.fill)) document.getElementById('fabricCor').value = o.fill;
+
+  if (typeof o.fontSize === 'number') {
+    const inputTamanho = document.getElementById('fabricTamanho');
+    if (inputTamanho) {
+       // ★ Lê o valor REAL que está na tela
+       inputTamanho.value = Math.round(o.fontSize);
+    }
+  }
+
+  if (typeof o.fill === 'string' && /^#[0-9a-f]{6}$/i.test(o.fill)) {
+    const inputCor = document.getElementById('fabricCor');
+    if (inputCor) inputCor.value = o.fill;
+  }
+
   const btnBold   = document.querySelector('[data-tool="bold"]');
   const btnItalic = document.querySelector('[data-tool="italic"]');
   if (btnBold)   btnBold.classList.toggle('ativo',   o.fontWeight === 'bold' || o.fontWeight === '900' || Number(o.fontWeight) >= 700);
   if (btnItalic) btnItalic.classList.toggle('ativo', o.fontStyle === 'italic');
+
+  if (typeof miroFabricAtualizarToolbar === 'function') miroFabricAtualizarToolbar();
 }
-function fabricAplicarEstilo(prop, valor){ const o=fabricObjetoSelecionado(); if(!o){showToast('Selecione um objeto primeiro.');return;} o.set(prop,valor); o.setCoords(); fabricEditor.requestRenderAll(); }
+function fabricAplicarEstilo(prop, valor){
+  const o = fabricObjetoSelecionado();
+  if (!o) { showToast('Selecione um objeto primeiro.'); return; }
+
+  if (prop === 'fontSize') {
+    // Garante que o valor é numérico e dentro dos limites
+    valor = Math.max(8, Math.min(600, Number(valor) || 8));
+    // ★ Salva o valor exato que você escolheu
+    o.set('miroBaseFontSize', valor);
+  }
+
+  o.set(prop, valor);
+  o.setCoords();
+  fabricEditor.requestRenderAll();
+
+  // Atualiza o select na hora para mostrar o valor correto
+  const tamanhoSelect = document.getElementById('fabricToolbarTamanho');
+  if (prop === 'fontSize' && tamanhoSelect) {
+    if (![...tamanhoSelect.options].some(opt => opt.value === String(valor))) {
+      const opt = document.createElement('option');
+      opt.value = String(valor);
+      opt.textContent = String(valor);
+      tamanhoSelect.appendChild(opt);
+    }
+    tamanhoSelect.value = String(valor);
+  }
+}
 function fabricToggleBold() {
   const o = fabricObjetoSelecionado();
   if (!o) { showToast('Selecione um texto primeiro.'); return; }
   const estaBold = o.fontWeight === 'bold' || o.fontWeight === '900' || Number(o.fontWeight) >= 700;
   o.set({ fontWeight: estaBold ? 'normal' : 'bold' });
+  if (o.miroRole === 'price' || o.miroRole === 'product-title') ajustarLarguraTextoPlaca(o, o.width, o.miroFitMinFontSize || 34, o.miroFitMaxHeight);
   o.setCoords(); fabricEditor.requestRenderAll(); fabricSincronizarControles();
 }
 function fabricToggleItalic() {
@@ -2883,6 +3362,7 @@ function fabricToggleItalic() {
   if (!o) { showToast('Selecione um texto primeiro.'); return; }
   const estaItalic = o.fontStyle === 'italic';
   o.set({ fontStyle: estaItalic ? 'normal' : 'italic' });
+  if (o.miroRole === 'price' || o.miroRole === 'product-title') ajustarLarguraTextoPlaca(o, o.width, o.miroFitMinFontSize || 34, o.miroFitMaxHeight);
   o.setCoords(); fabricEditor.requestRenderAll(); fabricSincronizarControles();
 }
 function fabricAdicionarTexto(texto='Novo texto',oferta=false){ if(!fabricEditor)return; const w=fabricEditor.getWidth(),h=fabricEditor.getHeight(); const obj=new fabric.Textbox(texto,{ left:w*.15, top:h*.35, width:w*.7, fontFamily:'Courier New', fontSize:oferta?34:48, fontWeight:'bold', fill:oferta?'#00552f':'#111111', textAlign:'center', angle:oferta?-20:0, editable:true }); fabricEditor.add(obj); fabricEditor.setActiveObject(obj); obj.enterEditing(); obj.selectAll(); fabricEditor.requestRenderAll(); fabricSincronizarControles(); }
@@ -2893,7 +3373,9 @@ function fecharEditorFabric(salvar){
   const modal = document.getElementById('modalEditorFabric');
   if(salvar && fabricEditor && placaFabricAtual){
     const data = fabricEditor.toDataURL({format:'png', multiplier:3});
-    placaFabricAtual.dataset.fabricJson = JSON.stringify(fabricEditor.toJSON());
+    const jsonFabric = fabricEditor.toJSON(['miroRole', 'miroBaseFontSize', 'miroFitMinFontSize', 'miroFitMaxHeight']);
+    placaFabricAtual.dataset.fabricJson = JSON.stringify(jsonFabric);
+    placaFabricAtual.classList.toggle('placa-com-fabric', fabricJsonTemMoldura(jsonFabric, fabricEditor.getWidth(), fabricEditor.getHeight()));
     const itemId = placaFabricAtual.dataset.itemId;
     const storageKey = fabricEditorTipo === 'vertical' ? 'fabric_placa_vertical_' : 'fabric_placa_';
     if (itemId) { localStorage.setItem(storageKey + itemId, placaFabricAtual.dataset.fabricJson); }
@@ -2901,7 +3383,7 @@ function fecharEditorFabric(salvar){
     let img = placaFabricAtual.querySelector(':scope > .fabric-resultado-placa');
     if(!img){ img = document.createElement('img'); img.className = 'fabric-resultado-placa'; placaFabricAtual.appendChild(img); }
     img.src = data; img.alt = 'Placa editada';
-    Object.assign(img.style, { position:'absolute', top:'0', left:'0', width:'100%', height:'100%', objectFit:'fill', zIndex:'2', display:'block', opacity: '1', background: '#fff', pointerEvents: 'none' });
+    Object.assign(img.style, { position:'absolute', top:'0', left:'0', width:'100%', height:'100%', objectFit:'fill', zIndex:'5', display:'block', opacity: '1', background: '#fff', pointerEvents: 'none' });
     const btn = placaFabricAtual.querySelector('.btn-editar-placa');
     if(btn) btn.style.zIndex='10';
     showToast('Placa salva com sucesso!');
@@ -3194,9 +3676,15 @@ function miroInstalarToolbarFabric() {
       </select></div>
       <div><span class="tool-label">Tamanho</span><select id="fabricToolbarTamanho" aria-label="Tamanho">
         <option value="18">18</option><option value="24">24</option><option value="32">32</option>
-        <option value="40">40</option><option value="48">48</option><option value="64">64</option>
+        <option value="40">40</option><option value="48">48</option>
+        <option value="54">54</option>
+        <option value="64">64</option>
         <option value="80">80</option><option value="100">100</option><option value="120">120</option>
-        <option value="160">160</option><option value="180">180</option><option value="200">200</option>
+        <option value="140">140</option><option value="160">160</option><option value="180">180</option>
+        <option value="200">200</option><option value="220">220</option><option value="240">240</option>
+        <option value="260">260</option><option value="280">280</option><option value="300">300</option>
+        <option value="320">320</option><option value="360">360</option><option value="400">400</option>
+        <option value="450">450</option><option value="500">500</option><option value="600">600</option>
       </select></div>
     </div>
     <div class="toolbar-group">
@@ -3246,9 +3734,12 @@ function miroFabricAtualizarToolbar() {
   const fonte = document.getElementById('fabricToolbarFonte');
   const tamanho = document.getElementById('fabricToolbarTamanho');
   const cor = document.getElementById('fabricToolbarCor');
-  if (!o) return;
 
-  // Se a fonte salva não estiver na lista, adiciona-a; nunca substitui a fonte do objeto.
+  if (!o) {
+    if (tamanho) tamanho.value = '';
+    return;
+  }
+
   if (fonte && o.fontFamily) {
     const valor = String(o.fontFamily);
     if (![...fonte.options].some(opt => opt.value === valor)) {
@@ -3258,15 +3749,21 @@ function miroFabricAtualizarToolbar() {
     }
     fonte.value = valor;
   }
-  if (tamanho && o.fontSize) {
-    const val = String(o.fontSize);
-    if (![...tamanho.options].some(opt => opt.value === val)) {
+
+  if (tamanho) {
+    // ★ Pega o valor do fontSize exato
+    const valorTamanho = String(Math.round(o.fontSize));
+
+    // Se o valor não existir no select, cria na hora
+    if (![...tamanho.options].some(opt => opt.value === valorTamanho)) {
       const opt = document.createElement('option');
-      opt.value = val; opt.textContent = val;
+      opt.value = valorTamanho;
+      opt.textContent = valorTamanho;
       tamanho.appendChild(opt);
     }
-    tamanho.value = val;
+    tamanho.value = valorTamanho;
   }
+
   if (cor && typeof o.fill === 'string' && /^#[0-9a-f]{6}$/i.test(o.fill)) cor.value = o.fill;
 }
 
