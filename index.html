@@ -1091,6 +1091,231 @@ placa-vertical-composicao .placa-vertical-titulo {
   overflow: visible;                /* não corta */
   display: block;
 }
+
+
+/* ==========================================================
+   RESPONSIVIDADE DA INTERFACE — Supermercado Miro
+   A arte do encarte continua com 1024px internos. Apenas a
+   visualização é reduzida para caber na tela; PNG e A4 ficam
+   com suas dimensões originais.
+   ========================================================== */
+
+img, canvas, video { max-width: 100%; }
+
+.welcome-screen,
+.app-screen { width: 100%; min-width: 0; }
+
+.welcome-header,
+.app-header { min-width: 0; }
+
+.welcome-hero,
+.area-central,
+.encarte-preview-wrapper,
+.app-header,
+.app-header-left,
+.app-header-right { min-width: 0; }
+
+.area-central { overscroll-behavior: contain; }
+.encarte-preview-wrapper { width: 100%; }
+.encarte-preview-info { flex-wrap: wrap; gap: 8px 16px; }
+.encarte-preview-info-left,
+.encarte-preview-info-right { min-width: 0; }
+#flyer-preview { max-width: 1080px; }
+.flyer-scale { will-change: transform; }
+
+button, input, select, textarea { max-width: 100%; }
+input, select, textarea { min-width: 0; }
+.modal-overlay { overflow-y: auto; overscroll-behavior: contain; }
+.modal { min-width: 0; }
+.modal-body { min-width: 0; }
+.fabric-editor-modal { width: min(95vw, 1500px); }
+.fabric-canvas-wrap { min-width: 0; }
+.fabric-editor-toolbar { max-width: 100%; }
+
+/* Tablets e notebooks menores */
+@media (max-width: 1100px) {
+  .welcome-header { padding-left: 28px; padding-right: 28px; }
+  .welcome-hero { padding-left: 36px; padding-right: 36px; gap: 32px; }
+  .area-central { padding: 20px; }
+  .encarte-preview-wrapper { padding: 18px; }
+  .app-header { padding-left: 18px; padding-right: 18px; }
+  .app-header-left { gap: 12px; }
+  .app-header-right { gap: 8px; }
+  .app-header-btn { padding: 9px 12px; }
+}
+
+/* Tablets em retrato e celulares */
+@media (max-width: 760px) {
+  .welcome-header {
+    padding: 14px 18px;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+  .welcome-header-right { display: flex; flex-wrap: wrap; gap: 8px; }
+  .welcome-hero {
+    grid-template-columns: minmax(0, 1fr);
+    padding: 28px 18px 36px;
+    gap: 26px;
+  }
+  .welcome-hero-left { max-width: none; }
+  .welcome-title {
+    font-size: clamp(34px, 8vw, 48px);
+    letter-spacing: -1.4px;
+    overflow-wrap: anywhere;
+  }
+  .welcome-subtitle { font-size: 16px; }
+  .welcome-features { margin-bottom: 24px; }
+  .welcome-calendar-card { padding: 20px; border-radius: 16px; }
+  .welcome-calendar-header { gap: 12px; }
+  .calendar-grid { gap: 2px; }
+  .calendar-grid .dia-semana { font-size: 9px; padding: 6px 0; }
+  .calendar-grid .dia { font-size: 12px; }
+  .welcome-footer-note { padding-top: 20px; }
+
+  .app-header {
+    position: sticky;
+    padding: 10px 12px;
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .app-header-left { width: 100%; gap: 10px; flex-wrap: wrap; }
+  .app-header-right {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    gap: 7px;
+  }
+  .app-logo-text { font-size: 17px; }
+  .app-logo-text span { font-size: 8px; letter-spacing: 1.4px; }
+  .app-divider { display: none; }
+  .app-titulo-pagina { font-size: 12px; }
+  .app-status { padding: 6px 8px; font-size: 11px; }
+  .app-header-btn { min-height: 38px; padding: 8px 10px; font-size: 12px; }
+
+  .area-central { padding: 12px; }
+  .top-bar { margin-bottom: 12px; padding-bottom: 10px; }
+  .encarte-preview-wrapper { padding: 10px; border-radius: 12px; }
+  .encarte-preview-info { margin-bottom: 10px; padding-bottom: 10px; }
+  .encarte-preview-info-left,
+  .encarte-preview-info-right { font-size: 10px; }
+
+  .modal-overlay { padding: 8px; align-items: flex-start; }
+  .modal {
+    width: 100%;
+    max-width: 100% !important;
+    max-height: calc(100dvh - 16px);
+    margin: auto 0;
+    border-radius: 13px;
+  }
+  .modal-header { padding: 18px 16px 0; gap: 10px; }
+  .modal-header h2 { font-size: 19px; }
+  .modal-body { padding: 16px; }
+  .modal-footer { padding: 12px 16px 18px; gap: 8px; flex-wrap: wrap; }
+  .modal-footer .btn { flex: 1 1 auto; }
+  .placas-table-container { max-width: 100%; overflow-x: auto; }
+  .placas-toolbar-actions { flex-wrap: wrap; }
+  .fabric-editor-modal { width: 100%; max-height: calc(100dvh - 16px); }
+  .fabric-editor-modal .modal-body {
+    max-height: calc(100dvh - 150px);
+    overflow: auto;
+    padding: 10px;
+  }
+  .fabric-editor-toolbar {
+    position: sticky;
+    top: -10px;
+    z-index: 100;
+    gap: 6px;
+    padding: 8px;
+    margin-bottom: 10px;
+    border-radius: 8px;
+  }
+  .fabric-editor-toolbar .toolbar-group {
+    flex-wrap: wrap;
+    border-right: 0;
+    padding-right: 0;
+    margin-right: 0;
+  }
+  .fabric-editor-toolbar button,
+  .fabric-editor-toolbar select { min-height: 36px; }
+  .fabric-editor-toolbar select { min-width: 92px; }
+  .fabric-canvas-wrap { padding: 6px; justify-content: flex-start; }
+  #fabricPlacaCanvas { max-width: 100%; }
+  .fabric-tools { grid-template-columns: minmax(0, 1fr); }
+}
+
+/* Celulares estreitos */
+@media (max-width: 480px) {
+  .welcome-header { align-items: flex-start; flex-direction: column; }
+  .welcome-header-right { width: 100%; }
+  .welcome-header-btn { flex: 1 1 auto; justify-content: center; font-size: 12px; }
+  .welcome-hero { padding: 22px 14px 28px; }
+  .welcome-title { font-size: clamp(31px, 9vw, 40px); }
+  .welcome-calendar-card { padding: 14px; }
+  .welcome-calendar-header h3 { font-size: 16px; }
+  .welcome-calendar-header p { font-size: 11px; }
+  .calendar-nav .mes-atual { font-size: 13px; }
+  .calendar-grid .dia { font-size: 11px; border-radius: 6px; }
+
+  .app-header { padding: 9px; }
+  .app-header-left { gap: 7px; }
+  .app-header-right { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .app-header-btn { justify-content: center; white-space: normal; text-align: center; }
+  .app-status { grid-column: 1 / -1; }
+  .menu-toggle { width: 36px; height: 36px; }
+  .area-central { padding: 8px; }
+  .encarte-preview-wrapper { padding: 7px; }
+  .encarte-preview-info { align-items: flex-start; }
+  .encarte-preview-info-left { flex: 1 1 100%; }
+  .encarte-preview-info-right { flex: 1 1 100%; }
+  .modal-header { padding: 15px 13px 0; }
+  .modal-body { padding: 13px; }
+  .modal-footer { padding: 10px 13px 15px; }
+  .modal-footer .btn { width: 100%; }
+  .fabric-editor-toolbar { gap: 5px; }
+  .fabric-editor-toolbar .tool-label { font-size: 8px; }
+}
+
+/*
+ * A mídia do aparelho não deve trocar a composição do encarte.
+ * O flyer permanece no seu canvas lógico de 1024px; ajustarEscalaPreview()
+ * faz apenas a redução visual. Assim o PNG exportado não ganha layout
+ * de duas colunas só porque foi solicitado a partir de um celular.
+ */
+@media (max-width: 700px) {
+  .flyer-scale {
+    width: 1024px !important;
+    left: 50% !important;
+    margin-left: -512px !important;
+  }
+  #flyer-preview { width: 100% !important; max-width: 1080px !important; }
+  #flyer-preview .miro-header {
+    min-height: 300px;
+    grid-template-columns: 1.03fr 1fr;
+    gap: 12px;
+    padding: 20px 24px 24px;
+  }
+  #flyer-preview .miro-products {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    grid-auto-rows: minmax(340px, max-content);
+    padding: 6px;
+  }
+  #flyer-preview .miro-products > .miro-card > .card-actions { opacity: 1; transform: none; }
+  #flyer-preview .miro-card.super-discount { grid-column: span 2; }
+  #flyer-preview .miro-products > .miro-card > .miro-photo { height: 215px; flex-basis: 215px; }
+  #flyer-preview .miro-footer {
+    grid-template-columns: 1.05fr 1.5fr 1.2fr;
+    text-align: initial;
+    padding: 16px 24px 10px;
+    margin-left: 0;
+    margin-right: 0;
+  }
+  #flyer-preview .footer-contact { text-align: initial; }
+  #flyer-preview .footer-bottom { font-size: inherit; }
+  #flyer-preview .always { display: block; }
+}
+
 </style>
 </head>
 <body>
@@ -3965,6 +4190,8 @@ if (typeof renderizarFolheto === 'function') {
   };
 }
 window.addEventListener('resize', () => requestAnimationFrame(() => miroAjustarPrecos(document.getElementById('flyer-preview') || document)));
+window.addEventListener('resize', () => requestAnimationFrame(() => ajustarEscalaPreview()));
+window.addEventListener('orientationchange', () => setTimeout(ajustarEscalaPreview, 180));
 document.addEventListener('DOMContentLoaded', () => {
   miroInstalarToolbarFabric();
   miroAjustarPrecos(document.getElementById('flyer-preview') || document);
