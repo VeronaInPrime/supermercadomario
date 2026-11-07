@@ -124,8 +124,15 @@ input, select, textarea { font-family: inherit; }
 .app-header-btn:hover { background: var(--miro-cinza); }
 .app-header-btn.primary { background: var(--miro-verde); color: white; border-color: var(--miro-verde); font-weight: 600; }
 .app-header-btn.primary:hover { background: var(--miro-verde-escuro); }
-.area-central { background: var(--miro-fundo); padding: 24px 32px 32px; overflow-y: auto; flex: 1; }
-.top-bar { display: flex; justify-content: flex-end; align-items: center; margin-bottom: 20px; padding-bottom: 16px; border-bottom: 1px solid var(--miro-cinza-borda); }
+.area-central {
+    background: var(--miro-fundo);
+    padding: 24px 32px 32px;
+    flex: 1 0 auto;
+    min-height: 0;
+    height: auto;
+    overflow: visible;
+    overscroll-behavior: auto;
+}.top-bar { display: flex; justify-content: flex-end; align-items: center; margin-bottom: 20px; padding-bottom: 16px; border-bottom: 1px solid var(--miro-cinza-borda); }
 .top-bar-right { font-size: 13px; color: var(--miro-texto-suave); font-weight: 500; display: flex; align-items: center; gap: 8px; }
 .top-bar-right::before { content: ''; width: 8px; height: 8px; background: var(--miro-verde-claro); border-radius: 50%; }
 .encarte-preview-wrapper { background: var(--miro-branco); border-radius: 16px; padding: 24px; box-shadow: var(--sombra-md); border: 1px solid var(--miro-cinza-borda); }
@@ -133,7 +140,7 @@ input, select, textarea { font-family: inherit; }
 .encarte-preview-info-left { display: flex; align-items: center; gap: 8px; font-size: 12px; color: var(--miro-texto-suave); }
 .encarte-preview-info-right { font-size: 12px; color: var(--miro-texto-suave); }
 #flyer-preview { width: 100%; max-width: 1080px; margin: 0 auto; overflow: hidden; position: relative; box-shadow: var(--sombra-lg); border-radius: 8px; }
-.flyer-scale { width: 1024px; position: relative; left: 50%; margin-left: -512px; transform-origin: top center; }
+.flyer-scale { width: 1080px; position: relative; left: 50%; margin-left: -512px; transform-origin: top center; }
 
 /* ============ LAYOUT MIRO DO ENCARTE ============ */
 .miro-flyer { background: radial-gradient(ellipse at 50% 12%, rgba(255,255,255,.08), transparent 35%), linear-gradient(115deg, #00482a 0%, #00622e 48%, #003b25 100%); display: flex; flex-direction: column; min-height: 100%; }
@@ -433,7 +440,7 @@ position: relative;
 .miro-footer > * { position: relative; z-index: 1; }
 .footer-callout {
 background: #8b0026;
-  padding: 12px 10px;
+  padding: 12px;
   font-size: 21px;
   line-height: 1.05;
   font-weight: 900;
@@ -459,7 +466,7 @@ background: #8b0026;
 .benefit:nth-child(3) .benefit-icon { background: #f19b00; }
 .always {
   position: absolute;
-  right: 35px;
+right: 50px;
   bottom: 35px;
   color: #ffd300;
   font-size: 23px;
@@ -964,7 +971,6 @@ placa-vertical-composicao .placa-vertical-titulo {
   letter-spacing: 0.5px;
   position: absolute;
   right: 25px;
-  bottom: 20px;
   opacity: 0.95;
   z-index: 2;
   color: var(--card-price-color, #ffffff);
@@ -1285,7 +1291,7 @@ input, select, textarea { min-width: 0; }
  */
 @media (max-width: 700px) {
   .flyer-scale {
-    width: 1024px !important;
+    width: 1080px !important;
     left: 50% !important;
     margin-left: -512px !important;
   }
@@ -1316,6 +1322,242 @@ input, select, textarea { min-width: 0; }
   #flyer-preview .always { display: block; }
 }
 
+
+
+/* =========================================================
+   ESTÚDIO MIRO — DIREÇÃO VISUAL 2026
+   Camada de interface. Não altera o DOM nem as dimensões do encarte.
+   ========================================================= */
+:root {
+  --miro-verde: #00552f;
+  --miro-verde-escuro: #003c25;
+  --miro-amarelo: #ffd500;
+  --ui-ink: #13251d;
+  --ui-muted: #7b8982;
+  --ui-line: rgba(20, 50, 36, .09);
+  --ui-shadow: 0 24px 70px rgba(8, 30, 19, .13);
+}
+body { background: #f3f6f4; }
+button { -webkit-tap-highlight-color: transparent; }
+
+/* Welcome: composição editorial dividida, conforme a referência enviada. */
+.welcome-screen {
+  min-height: 100vh; min-height: 100svh; display: block; position: relative;
+  overflow: hidden; background: linear-gradient(90deg, #00552f 0%, #00552f 49.8%, #f7f8f9 49.8%, #f7f8f9 100%);
+}
+.welcome-header {
+  position: absolute; z-index: 5; top: 0; left: 0; width: 49.8%;
+  height: 80px; padding: 16px clamp(24px, 4.4vw, 72px);
+  background: transparent; border: 0;
+}
+.welcome-logo { gap: 13px; }
+.welcome-logo-icon {
+  width: 48px; height: 48px; border-radius: 13px; background: #fff; color: #00552f;
+  box-shadow: 0 8px 22px rgba(0,0,0,.12); font-size: 22px;
+}
+.welcome-logo-icon::after { display:none; }
+.welcome-logo-text { color: #fff; font-family: 'Roboto Condensed', sans-serif; font-size: 21px; font-weight: 900; letter-spacing: -.3px; }
+.welcome-logo-text span { display:none; }
+.welcome-header-right { display:none; }
+.welcome-hero {
+  width: 100%; max-width: none; min-height: 100vh; min-height: 100svh; margin: 0;
+  grid-template-columns: 1fr 1fr; gap: 0; padding: 92px clamp(24px, 4.4vw, 72px) 42px;
+  align-items: center;
+}
+.welcome-hero-left { max-width: 620px; padding: 18px 30px 18px 0; color: #fff; animation: miroRise .75s cubic-bezier(.2,.8,.2,1) both; }
+.welcome-badge {
+  margin-bottom: 22px; padding: 7px 14px; border-radius: 999px; background: var(--miro-amarelo);
+  color: #073d27; letter-spacing: .7px; font-size: 11px; font-weight: 900;
+}
+.welcome-badge::before { content:'✦'; width:auto; height:auto; background:transparent; color:#073d27; font-size:14px; }
+.welcome-title {
+  max-width: 650px; margin: 0 0 22px; color: #fff; font-family: 'Bebas Neue','Roboto Condensed',sans-serif;
+  font-size: clamp(48px, 5vw, 76px); font-weight: 400; line-height: .98; letter-spacing: .1px;
+  text-transform: uppercase; text-wrap: balance;
+}
+.welcome-title .destaque { color: var(--miro-amarelo); }
+.welcome-title .destaque::after { display:none; }
+.welcome-subtitle { max-width: 530px; margin-bottom: 25px; color: rgba(255,255,255,.82); font-size: clamp(14px,1.25vw,17px); line-height: 1.65; }
+.welcome-features { margin: 0 0 28px; }
+.welcome-features li { gap: 12px; padding: 7px 0; color: #fff; font-size: 14px; font-weight: 500; }
+.welcome-features li::before { content:'✓'; width:20px; height:20px; background:var(--miro-amarelo); color:#06452b; font-size:12px; }
+.welcome-footer-note { display:block; max-width: 440px; padding: 14px 0 0; border-top: 1px solid rgba(255,255,255,.19); }
+.welcome-footer-icon { display:none; }
+.welcome-footer-text strong { color:rgba(255,255,255,.82); font-size:12px; font-weight:500; font-style:italic; line-height:1.6; }
+.welcome-footer-text span { display:none; }
+.welcome-calendar-card {
+  width: min(100%, 500px); justify-self: center; padding: clamp(24px,3vw,38px);
+  border: 1px solid rgba(255,255,255,.8); border-radius: 25px; background: rgba(255,255,255,.96);
+  box-shadow: 0 28px 75px rgba(10,30,20,.18), 0 3px 10px rgba(10,30,20,.04);
+  animation: miroCardIn .85s .08s cubic-bezier(.2,.8,.2,1) both;
+  backdrop-filter: blur(18px);
+}
+.welcome-calendar-header { margin-bottom: 22px; }
+.welcome-calendar-header h3 { color:#00552f; font-family:'Bebas Neue','Roboto Condensed',sans-serif; font-size:23px; font-weight:400; line-height:1.1; text-transform:uppercase; }
+.welcome-calendar-header p { color:#89928e; font-size:12px; }
+.calendar-eyebrow { margin-bottom:3px; color:#9aa39e; font-size:10px; font-weight:800; letter-spacing:1.3px; }
+.calendar-nav { margin-bottom: 13px; }
+.calendar-nav button { width:36px; height:36px; border:0; border-radius:50%; color:#66736c; font-size:22px; }
+.calendar-nav button:hover { background:#e9f4ed; color:#00552f; transform:translateY(-1px); }
+.calendar-nav .mes-atual { color:#00552f; font-family:'Bebas Neue','Roboto Condensed',sans-serif; font-size:22px; font-weight:400; text-transform:uppercase; }
+.calendar-grid { gap: 5px; margin-bottom: 18px; }
+.calendar-grid .dia-semana { padding: 8px 0 10px; color:#a0a8a4; font-size:10px; letter-spacing:.6px; }
+.calendar-grid .dia { min-height:43px; border-radius:11px; color:#1d3026; font-size:13px; font-weight:600; transition:background .18s, color .18s, transform .18s, box-shadow .18s; }
+.calendar-grid .dia:hover:not(.vazio):not(.selecionado) { background:#eaf3ed; transform:translateY(-2px); }
+.calendar-grid .dia.hoje { background:transparent; color:#00552f; }
+.calendar-grid .dia.hoje::after { bottom:5px; width:4px; height:4px; background:#00552f; }
+.calendar-grid .dia.selecionado, .calendar-grid .dia.selecionado.hoje {
+  background:#00552f; color:#fff; border-radius:12px; box-shadow:0 5px 12px rgba(0,85,47,.2); transform:translateY(-1px);
+}
+.calendar-grid .dia.selecionado::after { background:var(--miro-amarelo); }
+.calendar-grid .dia.em-intervalo { background:#e7f2eb; color:#00552f; border-radius:7px; }
+.calendar-grid .dia.inicio-intervalo, .calendar-grid .dia.fim-intervalo { background:#00552f; color:#fff; border:0; border-radius:11px; }
+.campanha-do-dia { margin: 4px 0 17px; padding: 12px 14px; background:#fffdf4; border:1px solid #f4efdd; border-radius:12px; }
+.campanha-do-dia-header { margin-bottom:4px; color:#8d948f; font-size:9px; letter-spacing:1px; }
+.campanha-do-dia-header::before { display:none; }
+.campanha-do-dia-titulo { color:#26372e; font-size:13px; }
+.campanha-do-dia-data { color:#758078; font-size:11px; }
+.btn-criar-ofertas {
+  padding: 16px 18px; border-radius:12px; background:var(--miro-amarelo); color:#083b27;
+  font-family:'Bebas Neue','Roboto Condensed',sans-serif; font-size:18px; letter-spacing:.4px;
+  box-shadow:0 5px 0 #d7b500, 0 12px 24px rgba(211,174,0,.13);
+}
+.btn-criar-ofertas:hover { background:#ffe044; box-shadow:0 7px 0 #d7b500,0 16px 28px rgba(211,174,0,.2); }
+.btn-criar-ofertas:active { box-shadow:0 2px 0 #d7b500; }
+.welcome-calendar-footer { color:#a0a8a4; font-size:10px; }
+
+/* Workspace: painel claro, cabeçalho verde e ações em cartões. */
+.app-header {
+  min-height:72px; padding:12px clamp(16px,3vw,38px); background:rgba(255,255,255,.94);
+  border-bottom:1px solid rgba(15,55,34,.08); box-shadow:0 5px 24px rgba(13,43,27,.045);
+  backdrop-filter:blur(16px);
+}
+.app-logo-icon { width:40px; height:40px; border-radius:12px; box-shadow:0 5px 13px rgba(0,85,47,.15); }
+.app-logo-text { font-family:'Roboto Condensed',sans-serif; font-size:21px; }
+.app-titulo-pagina { color:#64736a; font-size:13px; font-weight:700; letter-spacing:.2px; }
+.app-status { padding:8px 13px; border-radius:999px; background:#edf7f0; color:#17643d; font-size:11px; font-weight:700; }
+.app-status::before { box-shadow:0 0 0 4px rgba(16,185,129,.12); }
+.app-header-btn { border-radius:10px; font-weight:700; }
+.app-header-btn.primary { box-shadow:0 5px 13px rgba(0,85,47,.16); }
+.menu-toggle { order:0; margin:0; border:1px solid var(--ui-line); background:#fff; }
+.menu-toggle:hover { background:#edf6f0; }
+.area-central { padding:clamp(16px,2.8vw,34px); background:radial-gradient(ellipse at 50% 0%,#fff 0%,#f4f7f5 55%,#eef3f0 100%); }
+.workspace-toolbar {
+  display:flex; align-items:center; justify-content:space-between; gap:22px; max-width:1440px;
+  margin:0 auto 20px; padding:18px 20px; border:1px solid rgba(14,63,37,.08); border-radius:18px;
+  background:rgba(255,255,255,.86); box-shadow:0 10px 32px rgba(15,45,28,.055); backdrop-filter:blur(14px);
+}
+.workspace-heading { display:flex; flex-direction:column; min-width:190px; }
+.workspace-kicker { margin-bottom:3px; color:#8b9990; font-size:9px; font-weight:900; letter-spacing:1.5px; }
+.workspace-heading strong { color:#163a27; font-family:'Roboto Condensed',sans-serif; font-size:21px; line-height:1.1; }
+.workspace-heading small { margin-top:4px; color:#849088; font-size:11px; }
+.workspace-actions { display:flex; align-items:center; justify-content:flex-end; gap:8px; flex-wrap:wrap; }
+.workspace-action {
+  display:flex; align-items:center; gap:10px; min-height:48px; padding:7px 13px; border:1px solid #e6ece8;
+  border-radius:12px; background:#fff; color:#1c3828; text-align:left; transition:transform .2s,box-shadow .2s,border-color .2s,background .2s;
+}
+.workspace-action:hover { transform:translateY(-2px); border-color:#b7d8c4; box-shadow:0 8px 18px rgba(13,69,38,.08); background:#fbfefc; }
+.workspace-action > span:first-child { display:grid; place-items:center; width:30px; height:30px; border-radius:9px; background:#edf6f0; color:#00552f; font-size:19px; }
+.workspace-action small,.workspace-action b { display:block; white-space:nowrap; }
+.workspace-action small { color:#929d96; font-size:8px; font-weight:900; letter-spacing:.7px; }
+.workspace-action b { margin-top:2px; font-size:11px; font-weight:800; }
+.workspace-action-primary { border-color:#00552f; background:#00552f; color:#fff; }
+.workspace-action-primary:hover { background:#004326; border-color:#004326; }
+.workspace-action-primary > span:first-child { background:rgba(255,255,255,.14); color:#ffdf31; }
+.workspace-action-primary small { color:rgba(255,255,255,.66); }
+.encarte-preview-wrapper {
+  max-width:1440px; margin:0 auto; padding:clamp(12px,2vw,24px); border:1px solid rgba(14,63,37,.08);
+  border-radius:20px; background:rgba(255,255,255,.94); box-shadow:0 18px 55px rgba(15,45,28,.075);
+}
+.encarte-preview-info { border-bottom-color:#edf1ee; }
+#flyer-preview { border-radius:12px; box-shadow:0 18px 45px rgba(0,0,0,.13); }
+
+/* Drawer e modais: profundidade, cantos e transições consistentes. */
+.drawer { border-left:1px solid rgba(15,55,34,.08); box-shadow:-24px 0 70px rgba(0,0,0,.16); }
+.drawer-header { padding:22px 24px; }
+.drawer-item { border:1px solid transparent; }
+.drawer-item:hover { background:#f1f7f3; border-color:#e1eee5; transform:translateX(3px); }
+.modal-overlay { padding:clamp(10px,2.5vw,28px); backdrop-filter:blur(7px); background:rgba(7,24,15,.58); }
+.modal { border:1px solid rgba(255,255,255,.7); border-radius:20px; box-shadow:0 28px 90px rgba(0,0,0,.25); }
+.modal-header { border-radius:20px 20px 0 0; }
+.modal-footer { border-radius:0 0 20px 20px; }
+
+@keyframes miroRise { from { opacity:0; transform:translateY(18px); } to { opacity:1; transform:translateY(0); } }
+@keyframes miroCardIn { from { opacity:0; transform:translateY(22px) scale(.985); } to { opacity:1; transform:translateY(0) scale(1); } }
+@media (prefers-reduced-motion: reduce) {
+  *,*::before,*::after { scroll-behavior:auto !important; animation-duration:.01ms !important; animation-iteration-count:1 !important; transition-duration:.01ms !important; }
+}
+@media (max-width: 1050px) {
+  .workspace-toolbar { align-items:flex-start; flex-direction:column; }
+  .workspace-actions { justify-content:flex-start; width:100%; }
+}
+@media (max-width: 900px) {
+  .welcome-screen { background:linear-gradient(180deg,#00552f 0%,#00552f 53%,#f5f7f6 53%,#f5f7f6 100%); }
+  .welcome-header { width:100%; height:72px; padding:12px 24px; }
+  .welcome-hero { min-height:100svh; grid-template-columns:1fr; gap:26px; padding:86px 24px 34px; }
+  .welcome-hero-left { max-width:680px; padding:0; }
+  .welcome-title { font-size:clamp(42px,8vw,62px); }
+  .welcome-subtitle { max-width:620px; }
+  .welcome-calendar-card { width:min(100%,560px); justify-self:center; }
+  .welcome-footer-note { display:none; }
+}
+@media (max-width: 600px) {
+  .welcome-screen { background:linear-gradient(180deg,#00552f 0%,#00552f 48%,#f5f7f6 48%,#f5f7f6 100%); }
+  .welcome-hero { padding:82px 16px 22px; gap:22px; }
+  .welcome-title { font-size:clamp(38px,11vw,54px); }
+  .welcome-subtitle { font-size:13px; line-height:1.5; margin-bottom:15px; }
+  .welcome-features { margin-bottom:12px; }
+  .welcome-features li { padding:4px 0; font-size:11px; }
+  .welcome-calendar-card { padding:20px 17px; border-radius:19px; }
+  .calendar-grid .dia { min-height:38px; font-size:12px; }
+  .calendar-grid .dia-semana { font-size:9px; }
+  .app-header { padding:10px 12px; gap:8px; }
+  .app-header-left { gap:9px; }
+  .app-logo-icon { width:34px; height:34px; }
+  .app-logo-text { font-size:17px; }
+  .app-divider,.app-titulo-pagina,.app-header-right .app-status,.app-header-right .app-header-btn { display:none; }
+  .menu-toggle { width:38px; height:38px; }
+  .area-central { padding:12px 9px 22px; }
+  .workspace-toolbar { padding:14px; margin-bottom:12px; border-radius:15px; }
+  .workspace-heading strong { font-size:19px; }
+  .workspace-actions { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:7px; }
+  .workspace-action { min-width:0; padding:7px 8px; gap:7px; }
+  .workspace-action > span:first-child { width:27px; height:27px; flex:0 0 27px; }
+  .workspace-action b { font-size:10px; white-space:normal; }
+  .workspace-action small { font-size:7px; }
+  .encarte-preview-wrapper { padding:9px; border-radius:14px; }
+  .encarte-preview-info { gap:8px; align-items:flex-start; }
+  .encarte-preview-info-left { font-size:10px; }
+  .encarte-preview-info-right { white-space:nowrap; font-size:10px; }
+  .modal-overlay { padding:8px; align-items:flex-end; }
+  .modal { width:100%; max-width:100% !important; max-height:94dvh; border-radius:18px 18px 12px 12px; }
+  .modal .modal-body { max-height:calc(94dvh - 145px); overflow-y:auto; overscroll-behavior:contain; }
+  .fabric-editor-modal { width:100%; max-width:100vw; max-height:96dvh; }
+  .fabric-editor-modal .modal-body { max-height:calc(96dvh - 130px); }
+  .fabric-editor-layout { grid-template-columns:minmax(0,1fr); }
+  .fabric-canvas-wrap { min-height:220px; max-height:42dvh; justify-content:flex-start; }
+  .fabric-tools { grid-template-columns:repeat(2,minmax(0,1fr)); }
+}
+.modal-overlay {
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+.drawer,
+.fabric-canvas-wrap,
+.fabric-tools,
+.modal .modal-body,
+.placas-preview-area,
+.placas-table-container,
+.qrcode-canvas-wrapper {
+    overscroll-behavior: contain;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
+}
 </style>
 </head>
 <body>
@@ -1325,7 +1567,7 @@ input, select, textarea { min-width: 0; }
 <header class="welcome-header">
 <div class="welcome-logo">
 <div class="welcome-logo-icon">🛒</div>
-<div class="welcome-logo-text">Miro<span>Supermercado</span></div>
+<div class="welcome-logo-text">ESTÚDIO MIRO<span>SUPERMERCADO</span></div>
 </div>
 <div class="welcome-header-right">
 <div class="welcome-header-status">Feito para facilitar o seu dia</div>
@@ -1335,29 +1577,29 @@ input, select, textarea { min-width: 0; }
 <div class="welcome-hero">
 <div class="welcome-hero-left">
 <div class="welcome-badge">Boas ofertas começam aqui</div>
-<h1 class="welcome-title">Sua economia<br>merece ganhar<br><span class="destaque">destaque.</span></h1>
-<p class="welcome-subtitle">Crie ofertas que chamam a atenção. Organize seus produtos e compartilhe com seus clientes, de um jeito simples e bonito.</p>
+<h1 class="welcome-title">Sua economia<br>merece<br><span class="destaque">ganhar destaque.</span></h1>
+<p class="welcome-subtitle">Um estúdio de encartes populares onde a tipografia grita, as formas são marcantes e cada oferta ganha o destaque que merece.</p>
 <ul class="welcome-features">
-<li>Ofertas organizadas por dia</li>
-<li>Prontas para o WhatsApp</li>
-<li>Salvas automaticamente</li>
+<li>Crie encartes promocionais em minutos</li>
+<li>Exporte em PNG para WhatsApp (1080px)</li>
+<li>Imprima placas A4 com preço gigante</li>
+<li>Gere QR Codes para divulgar nas redes</li>
 </ul>
 <div class="welcome-footer-note">
 <div class="welcome-footer-icon">🕒</div>
 <div class="welcome-footer-text">
-<strong>Mais tempo para cuidar do que importa.</strong>
-<span>O seu mercado. Os seus clientes.</span>
+<strong>Feito para o dono de mercado que conhece cada cliente pelo nome.</strong>
+<span>Da feira ao encarte, do encarte ao WhatsApp — sem complicação.</span>
 </div>
 </div>
 </div>
 <div class="welcome-calendar-card">
 <div class="welcome-calendar-header">
-<div class="welcome-calendar-icon">📅</div>
-<div><h3>Quando vamos economizar?</h3><p>Escolha a data da sua campanha.</p></div>
+<div><p class="calendar-eyebrow">ESCOLHA UMA DATA</p><h3>Planeje sua campanha</h3><p>Selecione o dia das suas ofertas.</p></div>
 </div>
 <div class="calendar-nav">
 <button onclick="mudarMes(-1)">‹</button>
-<div class="mes-atual" id="mesAtual">Outubro de 2026</div>
+<div class="mes-atual" id="mesAtual">Mês atual</div>
 <button onclick="mudarMes(1)">›</button>
 </div>
 <div class="calendar-grid" id="calendarGrid"></div>
@@ -1455,6 +1697,15 @@ input, select, textarea { min-width: 0; }
 </div>
 </header>
 <main class="area-central">
+<div class="workspace-toolbar">
+  <div class="workspace-heading"><span class="workspace-kicker">ÁREA DE CRIAÇÃO</span><strong>Seu encarte, do seu jeito.</strong><small>Organize, personalize e publique suas ofertas.</small></div>
+  <div class="workspace-actions">
+    <button class="workspace-action" onclick="abrirModalCalendario('alterarData')"><span>▦</span><span><small>DATA DA CAMPANHA</small><b id="workspaceDateLabel">Selecionar data</b></span></button>
+    <button class="workspace-action" onclick="prepararNovoCadastro('prod')"><span>＋</span><span><small>PRODUTOS</small><b>Adicionar oferta</b></span></button>
+    <button class="workspace-action" onclick="prepararNovoContainer()"><span>▤</span><span><small>ORGANIZAÇÃO</small><b>Criar grupo</b></span></button>
+    <button class="workspace-action workspace-action-primary" onclick="abrirPreviewPNG()"><span>↗</span><span><small>PUBLICAÇÃO</small><b>Exportar encarte</b></span></button>
+  </div>
+</div>
 <div class="encarte-preview-wrapper">
 <div class="encarte-preview-info">
 <div class="encarte-preview-info-left"><span>ℹ️</span><span>Arraste pela alça para organizar. Use 🎨 estilo, ✎ editar ou ✕ excluir.</span></div>
@@ -1820,7 +2071,7 @@ const temasDia = {
 };
 const meses = ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'];
 const diasSemana = ['SEG', 'TER', 'QUA', 'QUI', 'SEX', 'SÁB', 'DOM'];
-let calendarioData = new Date(2026, 9, 17);
+let calendarioData = new Date();
 let calCursor = new Date();
 let calModo = 'campanha';
 let calRangeInicio = null;
@@ -2123,8 +2374,12 @@ adicionarTextoVisualPlaca(canvasFabric, String(unidade || '').toUpperCase(), {
 window.onload = function() {
   atualizarCampoDescricao('prod');
   atualizarCampoQuantidade();
-  const ultimaData = localStorage.getItem('miro_last_date');
-  if (ultimaData) { calendarioData = new Date(ultimaData + 'T12:00:00'); }
+  // O calendário sempre abre no mês atual e inicia com o dia de hoje selecionado.
+  // Os dados das campanhas anteriores continuam salvos por data no localStorage.
+  const hojeLocal = new Date();
+  const hojeISO = `${hojeLocal.getFullYear()}-${String(hojeLocal.getMonth()+1).padStart(2,'0')}-${String(hojeLocal.getDate()).padStart(2,'0')}`;
+  localStorage.setItem('miro_last_date', hojeISO);
+  calendarioData = new Date(hojeLocal.getFullYear(), hojeLocal.getMonth(), 1, 12);
   renderizarCalendario();
   window.addEventListener('resize', ajustarEscalaPreview);
 };
@@ -2384,7 +2639,15 @@ function getImageBase64(inputId) {
     reader.readAsDataURL(file);
   });
 }
+function atualizarDataToolbarMiro() {
+  const el = document.getElementById('workspaceDateLabel');
+  if (!el) return;
+  const valor = dataAtual || localStorage.getItem('miro_last_date');
+  el.textContent = valor ? new Date(valor + 'T12:00:00').toLocaleDateString('pt-BR', { day:'2-digit', month:'short', year:'numeric' }) : 'Selecionar data';
+}
+
 function atualizarDisplayCampanha() {
+  atualizarDataToolbarMiro();
   const d = new Date(dataAtual + 'T12:00:00');
   if (dataPeriodoInicio && dataPeriodoFim && dataPeriodoInicio !== dataPeriodoFim) {
     const dIni = new Date(dataPeriodoInicio + 'T12:00:00');
@@ -2811,7 +3074,7 @@ function renderizarFolheto() {
   const footerCallout = t.footerCallout || 'AQUI TEM\nTUDO O QUE\nVOCÊ PRECISA!';
   const footerEndereco = t.footerEndereco || '📌 Rua São Paulo, 419 – Bairro Boa Vista, Rio do Sul - SC';
   const footerTelefone = t.footerTelefone || '📞 (47) 3521-3354';
-  const alwaysTxt = t.always || 'Sempre\ncom você!';
+  const alwaysTxt = t.always || 'Sempre\n com você!';
 
   const produtosFiltrados = produtos.filter(p => produtoVigenteNaData(p, dataAtual));
   const superFiltrados = superDescontos.filter(p => produtoVigenteNaData(p, dataAtual));
@@ -3973,7 +4236,7 @@ function atualizarPreviewCabecalho() {
   set('previewTagline', get('inputTagline', 'Mais economia para você!'));
   const endereco = get('inputFooterEndereco', '📌 Rua ...');
   const telefone = get('inputFooterTelefone', '📞 ...');
-  const sempre = get('inputAlways', 'Sempre com você!');
+const sempre = get('inputAlways', 'Sempre com você!');
   set('previewFooter', [endereco, telefone, sempre].filter(Boolean).join(' · '));
   const preview = document.getElementById('previewCabecalho');
   if (preview) {
